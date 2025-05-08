@@ -16,6 +16,7 @@
             left:100px;
             top: 50px;
             width: 150px;
+            transition: 1s;
         }
     </style>
 </head>
@@ -26,11 +27,24 @@
     <script>
         const hand = document.querySelector('.hand');
         const key = document.querySelector('.key');
+        let isKeyInHand = false;
 
         hand.addEventListener('click', () => {
-            const handRect = hand.getBoundingClientRect();
-            console.log(handRect);
+            if(isKeyInHand){
+                // 키가 손 안에 있을 때
+                key.style.transform = 'scale(1) translate(0, 0)';
+            } else {
+                // 키가 손 안에 없을 때
+                const handRect = hand.getBoundingClientRect();
+                const leftPosition = handRect.left + 150;
+                const topPosition = handRect.top - 70;
+                key.style.transform = `scale(0.5) translate(${leftPosition}px, ${topPosition}px)`;
+            }
+        })
+        key.addEventListener('transitionend', () => {
+            isKeyInHand = !isKeyInHand;
         })
     </script>
+    
 </body>
 </html>
