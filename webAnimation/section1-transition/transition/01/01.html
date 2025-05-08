@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS transition</title>
+
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            transition: 
+                transform 2s; 
+                /* background 1s 2s */
+        }
+        .box-action{
+            transform: translateX(300px);
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <p class="message"></p>
+
+    <script>
+        //transitionrun 발동
+        //transitionstart 시작
+        //transitionend 끝
+        //transitioncancel 취소 (ex. 대상이 사라졌을때)
+        const box = document.querySelector('.box');
+        const message = document.querySelector('.message');
+
+        //상태를 저장할 변수
+        let isTransitionRunning = false;
+
+        box.addEventListener('click', () => {
+            if(!isTransitionRunning){
+                box.classList.toggle('box-action');
+            }
+            isTransitionRunning = true;
+
+            // cancel
+            setTimeout(() => {
+                box.remove();
+            }, 500)
+        });
+
+        box.addEventListener('transitionstart', (e) => {
+            console.log(`${e.propertyName} START`);
+            message.innerText = 'Start';
+        });
+        box.addEventListener('transitionend', (e) => {
+            console.log(`${e.propertyName} END`);
+            message.innerText = 'End'
+            isTransitionRunning = false;
+        });
+        box.addEventListener('transitionrun', (e) => {
+            console.log(`${e.propertyName} RUN`);
+        });
+        box.addEventListener('transitioncancel', (e) => {
+            console.log(`${e.propertyName} CANCEL`);
+            message.innerText = 'Cancel'
+        });
+    </script>
+</body>
+</html>

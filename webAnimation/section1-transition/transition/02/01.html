@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition SVG</title>
+    <style>
+        .hand{
+            position: absolute;
+            left: 400px;
+            top: 90px;
+            width: 200px;
+        }
+        .key{
+            position: absolute;
+            left:100px;
+            top: 50px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <img class="hand" src="images/hand.svg" alt="hand" />
+    <object class="key" data="images/key.svg" type="image/svg+xml"></object>
+
+    <script>
+        const hand = document.querySelector('.hand');
+        const key = document.querySelector('.key');
+
+        hand.addEventListener('click', () => {
+            const handRect = hand.getBoundingClientRect();
+            console.log(handRect);
+        })
+    </script>
+</body>
+</html>
