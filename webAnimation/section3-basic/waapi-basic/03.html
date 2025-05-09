@@ -71,7 +71,49 @@
 	</div>
 	
 	<script>
-		
+		const box = document.querySelector('.box');
+		const playDisplay = document.querySelector('.player-display');
+		const keyframes = [
+			{transform: 'translateX(0)'},
+			{transform: 'translateX(200%)'}
+		]
+		const options = {
+			duration: 1000,
+			iterations: Infinity,
+			direction: 'alternate'
+		}
+
+		const animation = box.animate(keyframes, options);
+
+		const playerButtons = document.querySelector('.player-buttons');
+		playerButtons.addEventListener('click', event => {
+			const target = event.target.closest('.btn');
+			//console.log(target.dataset.buttonRole);
+			handlePlayer(target.dataset.buttonRole);
+		});
+		function handlePlayer(functionName){
+			switch (functionName) {
+				case 'play':
+					console.log('play');
+					animation.play();
+				break;
+				case 'pause':
+					console.log('pause');
+					animation.pause();
+				break;
+				case 'faster':
+					console.log('faster');
+					if(animation.playbackRate === 1) {
+						animation.playbackRate = 2;
+					}else{
+						animation.playbackRate = 1;
+					}
+					//console.log(animation.playbackRate); //재생속도
+				break;
+			}
+
+			playDisplay.innerHTML = animation.playState //애니메이션 상태
+		}
 	</script>
 </body>
 </html>
