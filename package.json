@@ -1,0 +1,19 @@
+{
+  "name": "hankgolf",
+  "version": "1.0.0",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass" : "sass resources/scss/ui.scss resources/css/ui.css --no-source-map --style=compressed",
+    "sass-watch": "npm run sass -- --watch",
+    "sass-clear": "rm -rf resources/css/ui.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "sass": "^1.91.0"
+  }
+}
