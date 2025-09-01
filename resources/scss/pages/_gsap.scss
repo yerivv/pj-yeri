@@ -1,0 +1,121 @@
+.parallax-cont1 {
+    overflow: hidden;
+
+    .wrap {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:nth-child(2n) {
+            background-color: darkcyan;
+        }
+        &:nth-child(2n-1) {
+            background-color: darksalmon;
+        }
+
+        .number {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 40px;
+            font-size: 100px;
+            font-weight: 100;
+            color: #fff;
+        }
+
+        .item {
+            width: 10vw;
+            height: 10vw;
+            background-color: #fff;
+            &.active {
+                filter: hue-rotate(100deg)
+            }
+        }
+    }
+}
+
+.parallax-cont2 {
+    overflow: hidden;
+    .wrap {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightpink;
+
+        &#wrap2,&#wrap4,&#wrap6,&#wrap8 {
+            background-color: lightblue;
+        }
+        .number {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 40px;
+            font-size: 100px;
+            font-weight: 100;
+            color: #fff;
+        }
+
+        .item {
+            &.img {
+                width: 10vw;
+                height: 10vw;
+                margin: 1vw;
+                background-color: white;
+            }
+            &.text {
+                font-size: 80px;
+                font-weight: 700;
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+
+        &#wrap3 {
+            .img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50px;
+            }
+        }
+        &#wrap4 {
+            .img {
+                background-image: url(/resources/images/sea.jpeg);
+                background-size: cover;
+                background-position: center;
+            }
+        }
+
+        &#wrap5, &#wrap8 {
+            flex-direction: column;
+            gap: 10px 0;
+        }
+
+        &#wrap7 {
+            .text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                padding: 30px;
+                text-align: center;
+                background-color: lightpink;
+            }
+        }
+        &#wrap9 {
+            .img {
+                width: 100vw;
+                height: 100vh;
+                background-image: url(/resources/images/camping.jpeg);
+                background-size: cover;
+                background-position: center;
+            }
+        }
+    }
+}
