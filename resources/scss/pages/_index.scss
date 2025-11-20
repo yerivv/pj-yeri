@@ -1,0 +1,44 @@
+.index-cont {
+    margin: 30px;
+
+    .wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        gap: 20px 0;
+
+        dl {
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+        dt {
+            padding: 20px 0 0;
+            font-weight: 700;
+            font-size: 3vw;
+        }
+        dd {
+            margin-top: 10px;
+            .note {
+                border-radius: 10px;
+                padding: 20px;
+                border: 1px solid #ddd;
+            }
+            a {
+                display: block;
+                padding: 15px 20px;
+                color: #222;
+                background-color: #f4f4f4;
+            }
+            .desc {
+                font-size: 13px;
+                color: #666;
+                padding: 0 20px;
+                margin-top: 15px;
+                + .desc {
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+}

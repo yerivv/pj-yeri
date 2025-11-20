@@ -1,6 +1,4 @@
-.parallax-cont1 {
-    overflow: hidden;
-
+main {
     .wrap {
         width: 100%;
         height: 100vh;
@@ -8,22 +6,27 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .number {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 40px;
+        font-size: 100px;
+        font-weight: 100;
+        color: #fff;
+    }
+}
 
+.parallax-cont1 {
+    overflow: hidden;
+
+    .wrap {
         &:nth-child(2n) {
             background-color: darkcyan;
         }
         &:nth-child(2n-1) {
             background-color: darksalmon;
-        }
-
-        .number {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            padding: 40px;
-            font-size: 100px;
-            font-weight: 100;
-            color: #fff;
         }
 
         .item {
@@ -40,27 +43,11 @@
 .parallax-cont2 {
     overflow: hidden;
     .wrap {
-        width: 100%;
-        height: 100vh;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background-color: lightpink;
 
         &#wrap2,&#wrap4,&#wrap6,&#wrap8 {
             background-color: lightblue;
         }
-        .number {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            padding: 40px;
-            font-size: 100px;
-            font-weight: 100;
-            color: #fff;
-        }
-
         .item {
             &.img {
                 width: 10vw;
@@ -116,6 +103,153 @@
                 background-size: cover;
                 background-position: center;
             }
+        }
+    }
+}
+
+.parallax-cont3 {
+    overflow: hidden;
+    .wrap {
+        //background-color: lightpink;
+        .number {
+            font-size: 30px;
+            z-index: 1;
+        }
+        .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+            font-size: 80px;
+            font-weight: 700;
+            color: white;
+            //text-transform: uppercase;
+        }
+        .background {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            &::after {
+                content:'';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.7);
+            }
+        }
+    }
+    #wrap1 {
+        .background {
+            background-image: url(/resources/images/Switzerland.jpeg);
+        }
+    }
+    #wrap2 {
+        .background {
+            background-image: url(/resources/images/CzechRepublic.jpeg);
+        }
+    }
+    #wrap3 {
+        .background {
+            background-image: url(/resources/images/Italy.jpeg);
+        }
+    }
+}
+
+.parallax-cont4 {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    color: white;
+    background: black;
+    text-transform: uppercase;
+
+    h2 {
+        font-size: clamp(1rem, 5vw, 5rem);
+        font-weight: 400;
+        text-align: center;
+        letter-spacing: 0.5em;
+        margin-right: -0.5em;
+        color: hsl(0, 0, 80%);
+        width: 90vw;
+        max-width: 1200px;
+      }
+      
+    section {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        position: fixed;
+        visibility: hidden;
+        will-change: transform;
+    
+        .outer,
+        .inner {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+        will-change: transform;
+        }
+    
+        .bg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            background-size: cover;
+            background-position: center;
+        
+        h2 {
+            z-index: 2;
+        }
+    
+        .clip-text {
+            overflow: hidden;
+        }
+        }
+    }
+    
+    .first {
+        .bg {
+        background-image: $bg-gradient,
+            url(https://images.unsplash.com/photo-1617478755490-e21232a5eeaf?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxNzU1NjM5NA&ixlib=rb-1.2.1&q=75&w=1920);
+        }
+    }
+    
+    .second {
+        .bg {
+        background-image: $bg-gradient,
+            url("https://images.unsplash.com/photo-1617128734662-66da6c1d3505?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxNzc3NTM3MA&ixlib=rb-1.2.1&q=75&w=1920");
+        }
+    }
+    
+    .third {
+        .bg {
+        background-image: $bg-gradient,
+            url(https://images.unsplash.com/photo-1617438817509-70e91ad264a5?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxNzU2MDk4Mg&ixlib=rb-1.2.1&q=75&w=1920);
+        }
+    }
+    
+    .fourth {
+        .bg {
+        background-image: $bg-gradient,
+            url(https://images.unsplash.com/photo-1617412327653-c29093585207?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxNzU2MDgzMQ&ixlib=rb-1.2.1&q=75&w=1920);
+        }
+    }
+    
+    .fifth {
+        .bg {
+        background-image: $bg-gradient,
+            url("https://images.unsplash.com/photo-1617141636403-f511e2d5dc17?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYxODAzMjc4Mw&ixlib=rb-1.2.1&q=75w=1920");
+        background-position: 50% 45%;
         }
     }
 }

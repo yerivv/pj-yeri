@@ -327,3 +327,235 @@ if(parallax2) {
         markers: false,
     })
 }
+
+const parallax3 = document.getElementById('parallax3');
+if(parallax3) {
+
+    // GSAP가 제공하는 유틸리티 메서드입니다.
+    // querySelectorAll과 달리 결과를 **진정한 배열(Array)**로 반환합니다.
+    //gsap.utils.toArray()는 몇 가지 장점이 있습니다.
+    // 배열 반환: 결과를 바로 배열로 반환하므로, 별도의 변환 작업 없이 map(), filter() 같은 모든 배열 메서드를 즉시 사용할 수 있습니다. 이는 복잡한 애니메이션 로직을 짤 때 유용합니다.
+    // 안정성: GSAP는 다양한 환경에서 안정적으로 작동하도록 설계되어 있습니다. 특정 브라우저나 환경에서 querySelectorAll의 동작이 미묘하게 다를 때, toArray()가 더 일관된 결과를 보장할 수 있습니다.
+    // 코드의 의도: GSAP 코드 내에서 toArray()를 사용하면, 이 선택자가 GSAP 애니메이션을 위한 것임을 더 명확하게 보여줍니다.
+    // 결론적으로, 두 코드 모두 올바른 방식이며 동일한 스크롤 트리거를 생성합니다. 하지만 GSAP 공식 문서에서도 gsap.utils.toArray()를 권장하므로, 가독성이나 안정성 측면에서 첫 번째 코드가 조금 더 좋은 선택일 수 있습니다.
+    
+
+    //pinSpacing: true (기본값)
+    // 이 속성이 활성화 되면 이 빈 공간은 고정된 요소가 스크롤될 때 레이아웃이 무너지지 않게 해줍니다. 요소는 화면에 고정되어 있지만, 뒤따라오는 다른 콘텐츠들은 고정된 요소의 높이를 인식하고 그 아래에 정상적으로 위치하게 됩니다.
+
+    // pinSpacing : false
+    //여러 개의 패널을 순차적으로 고정시킬 때. 한 패널이 고정되면 다음 패널이 바로 위로 올라와 그 자리를 대체하는 효과를 만들 때 사용됩니다.
+    // 겹쳐지는 레이아웃 효과를 만들 때.
+
+    let panels = gsap.utils.toArray('.wrap');
+    let tops = panels.map(panel => ScrollTrigger.create({trigger: panel, start: "top top"}));
+
+    panels.forEach((panel, i) => {
+        ScrollTrigger.create({
+            trigger: panel,
+            start: () => panel.offsetHeight < window.innerHeight ? "top top" : "bottom bottom",
+            pin: true, 
+            pinSpacing: false 
+        });
+    });
+
+    // 스냅 고정 효과 만들기
+    // 스크롤을 했는데 다음 섹션이 위쪽에 가까운면 위쪽으로 붙여주고, 
+    // 아래쪽에 가까우면 아래쪽에 붙여주는 효과입니다. 좀 더 고급스러운 효과라고 할 수 있습니다. 
+    // 그래서 소스도 조금 더 복잡합니다. forEach와 비슷한 map 메서드를 사용하여 tops 변수에 trigger와 start를 저장했습니다. 모든 패널에 스타트를 설정했는데 섹션의 offsetHeight와 브라우저의 innerHeight를 비교하여 시작점을 위로 할지 아래로 할지 정하는 소스를 설정했습니다. 그리고 스냅을 설정하기 위해 snapTo를 설정하여, 스냅의 위치를 설정하였습니다. 아까 만들어 놓은 tops 변수에 start 값을 다시 설정하고, self.scroll()를 통해 움직임을 감지합니다. gsap.utils.normalize는 값의 범위를 특정 최소값과 최대값 사이로 조정하여 일관된 비율로 변환하는 메서드입니다.
+    ScrollTrigger.create({
+        snap: {
+            snapTo: (progress, self) => {
+                let panelStarts = tops.map(st => st.start), 
+                snapScroll = gsap.utils.snap(panelStarts, self.scroll()); 
+                return gsap.utils.normalize(0, ScrollTrigger.maxScroll(window), snapScroll); 
+            },
+            duration: 0.5
+        }
+    });
+
+    // 마우스 휠 스무스 효과
+    // Initialize a new Lenis instance for smooth scrolling
+    const lenis = new Lenis();
+
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+    // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 500); // Convert time from seconds to milliseconds
+    });
+
+    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+    gsap.ticker.lagSmoothing(0);
+}
+
+const parallax4 = document.getElementById('parallax4');
+if(parallax4) {
+    const sections = parallax4.querySelectorAll("section");
+    const images = parallax4.querySelectorAll(".bg");
+    const headings = gsap.utils.toArray(".section-heading");
+    const outerWrappers = gsap.utils.toArray(".outer");
+    const innerWrappers = gsap.utils.toArray(".inner");
+
+    document.addEventListener("wheel", handleWheel);
+    document.addEventListener("touchstart", handleTouchStart);
+    document.addEventListener("touchmove", handleTouchMove);
+    document.addEventListener("touchend", handleTouchEnd);
+
+    let listening = false,
+        direction = "down",
+        current,
+        next = 0;
+
+    const touch = {
+        startX: 0,
+        startY: 0,
+        dx: 0,
+        dy: 0,
+        startTime: 0,
+        dt: 0
+    };
+
+    const tlDefaults = {
+        ease: "slow.inOut",
+        duration: 1.25
+    };
+
+    const splitHeadings = headings.map((heading) => {
+        return new SplitText(heading, {
+            type: "chars, words, lines",
+            linesClass: "clip-text"
+        });
+    });
+
+    function revealSectionHeading() {
+        return gsap.to(splitHeadings[next].chars, {
+            autoAlpha: 1,
+            yPercent: 0,
+            duration: 1,
+            ease: "power2",
+            stagger: {
+                each: 0.02,
+                from: "random"
+            }
+        });
+    }
+
+    gsap.set(outerWrappers, { yPercent: 100 });
+    gsap.set(innerWrappers, { yPercent: -100 });
+
+    // Slides a section in on scroll down
+    function slideIn() {
+    // The first time this function runs, current is undefined
+        if (current !== undefined) gsap.set(sections[current], { zIndex: 0 });
+
+        gsap.set(sections[next], { autoAlpha: 1, zIndex: 1 });
+        gsap.set(images[next], { yPercent: 0 });
+        gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
+
+        const tl = gsap
+            .timeline({
+                paused: true,
+                defaults: tlDefaults,
+                onComplete: () => {
+                    listening = true;
+                    current = next;
+                }
+            })
+            .to([outerWrappers[next], innerWrappers[next]], { yPercent: 0 }, 0)
+            .from(images[next], { yPercent: 15 }, 0)
+            .add(revealSectionHeading(), 0);
+
+        if (current !== undefined) {
+            tl.add(
+                gsap.to(images[current], {
+                    yPercent: -15,
+                    ...tlDefaults
+                }),
+                0
+            ).add(
+                gsap
+                .timeline()
+                .set(outerWrappers[current], { yPercent: 100 })
+                .set(innerWrappers[current], { yPercent: -100 })
+                .set(images[current], { yPercent: 0 })
+                .set(sections[current], { autoAlpha: 0 })
+            );
+        }
+
+        tl.play(0);
+    }
+
+    // Slides a section out on scroll up
+    function slideOut() {
+        gsap.set(sections[current], { zIndex: 1 });
+        gsap.set(sections[next], { autoAlpha: 1, zIndex: 0 });
+        gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
+        gsap.set([outerWrappers[next], innerWrappers[next]], { yPercent: 0 });
+        gsap.set(images[next], { yPercent: 0 });
+
+        gsap
+            .timeline({
+                defaults: tlDefaults,
+                onComplete: () => {
+                    listening = true;
+                    current = next;
+                }
+            })
+            .to(outerWrappers[current], { yPercent: 100 }, 0)
+            .to(innerWrappers[current], { yPercent: -100 }, 0)
+            .to(images[current], { yPercent: 15 }, 0)
+            .from(images[next], { yPercent: -15 }, 0)
+            .add(revealSectionHeading(), ">-1")
+            .set(images[current], { yPercent: 0 });
+    }
+
+    function handleDirection() {
+        listening = false;
+
+        if (direction === "down") {
+            next = current + 1;
+            if (next >= sections.length) next = 0;
+            slideIn();
+        }
+
+        if (direction === "up") {
+            next = current - 1;
+            if (next < 0) next = sections.length - 1;
+            slideOut();
+        }
+    }
+
+    function handleWheel(e) {
+        if (!listening) return;
+        direction = e.wheelDeltaY < 0 ? "down" : "up";
+        handleDirection();
+    }
+
+    function handleTouchStart(e) {
+        if (!listening) return;
+        const t = e.changedTouches[0];
+        touch.startX = t.pageX;
+        touch.startY = t.pageY;
+    }
+
+    function handleTouchMove(e) {
+        if (!listening) return;
+        e.preventDefault();
+    }
+
+    function handleTouchEnd(e) {
+        if (!listening) return;
+        const t = e.changedTouches[0];
+        touch.dx = t.pageX - touch.startX;
+        touch.dy = t.pageY - touch.startY;
+        if (touch.dy > 10) direction = "up";
+        if (touch.dy < -10) direction = "down";
+        handleDirection();
+    }
+
+    slideIn();
+
+}
