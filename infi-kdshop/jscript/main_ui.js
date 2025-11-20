@@ -403,26 +403,65 @@ function popMainSlide(){
 
 var popSplitSlide;
 
+// popup 소스와 겹치는 부분이라 해당 영역으로 업데이트 (분할팝업)
 function popSplitSlide() {
     var $popSplitWrap   = $('.pop_main_split');
-    var $mainSplitSlide = $popSplitWrap.find('.swiper-container');
+    $popSplitWrap.each(function () {
+        console.log('실행');
+        var $wrap = $(this);
+        var $slides = $wrap.find('.swiper-slide');
 
-    popSplitSwiper = new Swiper($mainSplitSlide[0], {
-        pagination: {
-            el: $popSplitWrap.find('.bnr_paging')[0],
-            clickable: true
-        },
-        navigation: {
-            nextEl: $popSplitWrap.find('.swiper-button-next')[0],
-            prevEl: $popSplitWrap.find('.swiper-button-prev')[0]
-        },
-        loop: true,
-        on: {
-            init: function () {
-                adjustPopSplitLayout();      //배너 개수별 너비정의
-            }
+        if ($slides.length > 1) {
+            $wrap.find('.bnr_paging').show();
+            $wrap.find('.bnr_btns').show();
+        } else {
+            $wrap.find('.bnr_paging').hide();
+            $wrap.find('.bnr_btns').hide();
+            return; // 슬라이드가 하나면 Swiper 자체 생성 안 함
         }
+        
+        var $mainSplitSlide = $wrap.find('.swiper-container')
+        if (!$mainSplitSlide.length) return;
+        if ($mainSplitSlide[0].swiper) return;
+
+        popSplitSwiper = new Swiper($mainSplitSlide[0], {
+            pagination: {
+                el: $wrap.find('.bnr_paging')[0],
+                clickable: true,
+            },
+            navigation: {
+                nextEl: $wrap.find('.swiper-button-next')[0],
+                prevEl: $wrap.find('.swiper-button-prev')[0],
+            },
+            loop: true,
+            allowTouchMove:false,
+            on: {
+                init: function () {
+                    adjustPopSplitLayout(); // 배너 개수별 너비 정의
+                },
+            },
+        });
     });
+
+    
+    // var $mainSplitSlide = $popSplitWrap.find('.swiper-container');
+
+    // popSplitSwiper = new Swiper($mainSplitSlide[0], {
+    //     pagination: {
+    //         el: $popSplitWrap.find('.bnr_paging')[0],
+    //         clickable: true
+    //     },
+    //     navigation: {
+    //         nextEl: $popSplitWrap.find('.swiper-button-next')[0],
+    //         prevEl: $popSplitWrap.find('.swiper-button-prev')[0]
+    //     },
+    //     loop: true,
+    //     on: {
+    //         init: function () {
+    //             adjustPopSplitLayout();      //배너 개수별 너비정의
+    //         }
+    //     }
+    // });
 }
 
 function fnMainMainTimesaleAlarmActAjax(mainTimesaleIdx){
@@ -537,15 +576,18 @@ $(function(){
 	if (getCookie('pop_main_split') != 'done') {
 		$('.pop_main_split').addClass('open');
 	}	
-	var popSplitSlides = document.querySelectorAll('.pop_main_split .swiper-slide');
-	if(popSplitSlides.length > 1){
-		popSplitSlide();
-		$('.pop_main_split .bnr_paging').show();
-		$('.pop_main_split .bnr_btns').show();
-	}else{
-		$('.pop_main_split .bnr_btns').hide();
-		$('.pop_main_split .bnr_paging').hide();
-	}
+
+	// 위의 다중 팝업 확인 후 스와이퍼 실행되는 부분에 옮김
+	// var popSplitSlides = document.querySelectorAll('.pop_main_split .swiper-slide');
+	// if(popSplitSlides.length > 1){
+	// 	popSplitSlide();
+	// 	$('.pop_main_split .bnr_paging').show();
+	// 	$('.pop_main_split .bnr_btns').show();
+	// }else{
+	// 	$('.pop_main_split .bnr_btns').hide();
+	// 	$('.pop_main_split .bnr_paging').hide();
+	// }
+    popSplitSlide();
 	adjustPopSplitLayout();
 })
 $(window).on('scroll',function(){
