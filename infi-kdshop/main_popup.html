@@ -105,8 +105,12 @@
       }
       //분할팝업 딤드처리
       if (obj.classList.contains('pop_main_split')) {
-              $('#splitDim').removeClass('on');
-          }
+        //$('#splitDim').removeClass('on');
+        // 지금 닫은 것까지 포함해서, 화면에 남은 분할팝업이 하나도 없을 때만 딤드 제거
+        if ($('.pop_main_split:visible').length === 0) {
+          $('#splitDim').removeClass('on');
+        }
+      }
     }
   }
   
@@ -116,7 +120,8 @@
   
   
   $(function() {
-    // 분할팝업UI개선 (2025.11)
+    // 분할팝업UI개선 (2025.11) 
+    // 여러개의 분할팝업이 있을 경우, 모두 닫기
       var $splitPopup = $('.pop_main_split');
       var $dim        = $('#splitDim');
       if ($splitPopup.length > 0) {
@@ -125,9 +130,14 @@
       $dim.on('click', function () {
           var $opened = $('.pop_main_split:visible');
           if ($opened.length) {
-              closePopup($opened.attr('id'));
+            $opened.each(function () {
+                closePopup($(this).attr('id'));
+            });
+
+            // 팝업 다 닫힌 후 dim 제거
+            $dim.removeClass('on');
           } else {
-              $dim.removeClass('on');
+            $dim.removeClass('on');
           }
       });
       
@@ -495,22 +505,11 @@
                 <div class="cts"><img src='images/ex-1.png' alt='1'></div>
               </div>
               <!-- 쿼터 or 더블쿼더 -->
-              <!-- <div class="swiper-slide">
+              <div class="swiper-slide">
                 <div class="cts">
-                  <div class="cell">
-                    <div class="is-quarter"><img src='images/ex-1.png' alt='1'></div>
-                  </div>
-                  <div class="cell">
-                    <div class="is-quarter"><img src='images/ex-2.png' alt='1'></div>
-                  </div>
-                  <div class="cell">
-                    <div class="is-quarter"><img src='images/ex-2.png' alt='1'></div>
-                  </div>
-                  <div class="cell">
-                    <div class="is-quarter"><img src='images/ex-2.png' alt='1'></div>
-                  </div>
+                  <div class="cell"><img src='images/ex-2.png' alt='1'></div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
           <div class="bnr_paging"></div>
