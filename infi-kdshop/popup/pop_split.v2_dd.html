@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>광동제약 약국몰</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://dev.kdshop.co.kr https://d2vo4q2nx9xc96.cloudfront.net https://fonts.googleapis.com https://cdn.jsdelivr.net https://*.channel.io wss://front-ws.channel.io https://*.tason.com https://sccontents.tason.com:10443 https://js.sentry-cdn.com https://pg.easypay.co.kr https://spi.maps.daum.net https://*.daumcdn.net https://www.health.kr https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://*.google.com https://img-amc.tason.com https://postcode.map.daum.net https://www.youtube.com https://*.codehive.co.kr wss://*.codehive.co.kr https://*.bigin.io; object-src 'none'; img-src * blob: data:; font-src * 'self' 'unsafe-inline' blob: data: ">
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true">
+    <meta http-equiv="Imagetoolbar" content="no">
+    <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate,max-age=0">
+    <meta name="subject" content="광동제약 약국몰">
+    <meta name="title" content="광동제약 약국몰">
+    <meta name="author" content="광동제약">
+    <meta name="keywords" content="광동제약 약국몰, 광동 약국몰, 케이디샵, 광동 케이디샵, 광동제약 B2B몰, KD-Shop, 광동몰, KDShop">
+    <meta name="description" content="광동제약에서 운영하는 약국전용 폐쇄몰 입니다">
+    <meta name="classification" content="광동제약 약국몰, 광동 약국몰, 케이디샵, 광동 케이디샵, 광동제약 B2B몰, KD-Shop, 광동몰, KDShop">
+    <!--오픈 그래프 태그 공통정보 설정-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="광동제약 약국몰">
+    <meta property="og:title" content="광동제약 약국몰">
+    <meta property="og:url" content="https://dev.kdshop.co.kr">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="광동제약에서 운영하는 약국전용 폐쇄몰 입니다">	
+    <link rel="SHORTCUT ICON" href="https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/favicon.ico?eb6f62beab6d49a3b36c119479b6862b">
+    <link rel="stylesheet" type="text/css" href="https://dev.kdshop.co.kr/css/common.css?ver=2.29">
+    <link rel="stylesheet" type="text/css" href="../css/pop.v2.css?ver=2.26">
+    <link rel="stylesheet" type="text/css" href="https://dev.kdshop.co.kr/css/main.css?ver=2.26">
+    <!-- solution default //-->
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/underscore-min.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/mallstore.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/mallGoodsAddition.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/MallDiscountModel.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/common.js?ver=2.03"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/embed.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/misc.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/cookie.js"></script>
+    
+    <!-- jquery //-->
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery.browser.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery.adjustImage.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery.laybox.js?ver=1.01"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery.rollover.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/ui.js?ver=2.02"></script>
+
+    <!-- handlbarsJS // -->
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/handlebars.min.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/handlebarsHepler.js"></script>
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://dev.kdshop.co.kr/jscript/swiper/swiper.min.css">
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/swiper/swiper.min.js"></script>
+
+    <!-- video -->
+    <link href="https://dev.kdshop.co.kr/jscript/video/video-js.min.css" rel="stylesheet">
+    <script src="https://dev.kdshop.co.kr/jscript/video/video.min.js"></script>
+
+    <!-- scrollbar -->
+    <link rel="stylesheet" href="https://dev.kdshop.co.kr/jscript/scrollbar/OverlayScrollbars.min.css">
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/scrollbar/jquery.overlayScrollbars.min.js"></script>
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/scrollbar/OverlayScrollbars.min.js"></script>
+
+    <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery.slidex.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">header</div>
+        <div id="container">
+
+<!-- 팝업 v2 -------------------- -->
+            <!-- <div id="contents100">
+                메인 하단 팝업이 여기서 나옴.
+                <script type="text/javascript" src="../jscript/main_ui.js"></script>
+                <script type="text/javascript">
+                    //<![CDATA[
+                    
+                    var popupDivList = [
+                    
+                        {
+                            ISHTML   : 'F',
+                            CONTENT  : '',
+                            CONTENT2  : '',
+                            IMGPOPUP : 'https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/'+'182a24ae3f4c4bc4b351f4d1db6c774c.png',
+                            IMGPOPUP2 : '',
+                            TITLE    : '푸터 팝업01',
+                            LINKURL  : 'https://www.google.com/',
+                            KIND     : '1000'
+                        }
+                    ];
+                    
+                    function getUnitByKind(kind) {
+                        switch (kind) {
+                            case '1000' : return 8;
+                            case '1100' : return 2;
+                            case '1200' : return 1;
+                            default:        return 1;
+                        }
+                    }
+                    
+                    function buildLayerPopupHtml(list) {
+                        var popupNum = 0;
+                        var usedUnit = 0;
+                        var html = '';
+                    
+                        list.forEach(function(div) {
+                            var isHtml    = div.ISHTML;
+                            var imgPopup  = div.IMGPOPUP;
+                            var imgPopup2  = div.IMGPOPUP2;
+                            var content  = div.CONTENT;
+                            var content2  = div.CONTENT2;
+                            var title     = div.TITLE || '';
+                            var linkUrl   = div.LINKURL;
+                            var kind      = div.KIND;
+                    
+                            if (isHtml === 'T' || isHtml === 'Y') {
+                                return;
+                            }
+                            if (!imgPopup) {
+                                return;
+                            }
+                    
+                            var unit = getUnitByKind(kind);
+                    
+                            if (popupNum === 0) {
+                                html += '<div class="swiper-slide">';
+                                html += '  <div class="cts">';
+                            }
+                    
+                            if (usedUnit !== 0 && usedUnit + unit > 8) {
+                                html += '  </div>';
+                                html += '</div>';
+                    
+                                html += '<div class="swiper-slide">';
+                                html += '  <div class="cts">';
+                    
+                                usedUnit = 0;
+                            }
+                    
+                            html += '<div class="cell">';
+                            if(unit == 8){
+                                html += '<div class="is-single">';
+                            }else if(unit == 2){
+                                html += '<div class="is-quarter">';
+                            }else{
+                                html += '<div class="is-double">';
+                            }
+                            
+                            if (linkUrl) {
+                                html += '<a href="' + linkUrl + '" target="_blank">';
+                            }
+                            
+                            if(isHtml == 'T'){
+                                html += content;
+                                if(content2){
+                                    html += content2;
+                                }
+                            }else{
+                                html += '<img src="' + imgPopup + '" alt="' + title + '">';
+                                if(imgPopup2){
+                                    html += '<img src="' + 'https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/' + imgPopup2 + '" alt="' + title + '">';
+                                }
+                            }
+                            
+                            if (linkUrl) {
+                                html += '</a>';
+                            }
+                            
+                            html += '  </div>';
+                            html += '</div>';
+                    
+                            usedUnit += unit;
+                            popupNum++;
+                        });
+                    
+                        // 마지막 slide 닫기
+                        if (popupNum > 0) {
+                            html += '  </div>';
+                            html += '</div>';
+                        }
+                    
+                        return html;
+                    }
+                    
+                    function loadAfter() {
+                        var wrapper = document.getElementById('layerSwiperWrapper');
+                        if (!wrapper) return;
+                        var innerHtml = buildLayerPopupHtml(popupDivList);
+                        wrapper.innerHTML = innerHtml;
+                    
+                    }
+                        
+                    $(function() {
+                        loadAfter();
+                        
+                        $('.pop_main_bnr').addClass('open');
+                    
+                        var popSplitSlides = document.querySelectorAll('.pop_main_bnr .swiper-slide');
+                        if(popSplitSlides.length > 1){
+                            popSplitSlide();
+                            $('.pop_main_bnr .bnr_paging').show();
+                            $('.pop_main_bnr .bnr_btns').show();
+                        }else{
+                            $('.pop_main_bnr .bnr_btns').hide();
+                            $('.pop_main_bnr .bnr_paging').hide();
+                        }
+                    });
+                    
+                    //popup 소스와 겹치는 부분이라 해당 영역으로 업데이트 (분할팝업)
+                    function popSplitSlide() {
+                        var $popSplitWrap   = $('.pop_main_bnr');
+                        $popSplitWrap.each(function () {
+                            var $wrap = $(this);
+                            var $slides = $wrap.find('.swiper-slide');
+                    
+                            if ($slides.length > 1) {
+                                $wrap.find('.bnr_paging').show();
+                                $wrap.find('.bnr_btns').show();
+                            } else {
+                                $wrap.find('.bnr_paging').hide();
+                                $wrap.find('.bnr_btns').hide();
+                                return; // 슬라이드가 하나면 Swiper 자체 생성 안 함
+                            }
+                            
+                            var $mainSplitSlide = $wrap.find('.swiper-container')
+                            if (!$mainSplitSlide.length) return;
+                            if ($mainSplitSlide[0].swiper) return;
+                    
+                            popSplitSwiper = new Swiper($mainSplitSlide[0], {
+                                pagination: {
+                                    el: $wrap.find('.bnr_paging')[0],
+                                    clickable: true,
+                                },
+                                navigation: {
+                                    nextEl: $wrap.find('.swiper-button-next')[0],
+                                    prevEl: $wrap.find('.swiper-button-prev')[0],
+                                },
+                                loop: true,
+                                allowTouchMove:false,
+                                on: {
+                                    init: function () {
+                                        //adjustPopSplitLayout(); // 배너 개수별 너비 정의
+                                    },
+                                },
+                            });
+                        });
+                    }
+                    //]]>
+                    </script>
+                <div class="pop_main_bnr except open" id="pop_main_bnr" style="background:#FFFFFF;">
+                    <div class="bnr_inner">
+                        <div class="bnr_bg">
+                            <div class="bnr_box" style="bottom: 0px;">	
+                                <div class="bnr_noti">
+                                    <div class="bnr_paging" style="display: none;"></div>
+                                    <div class="input_wrap">
+                                        <span class="formdesign"><input type="checkbox" id="pop_main_bnr_done"><label for="pop_main_bnr_done" style="color:#999999">오늘 하루 보지않기</label></span>
+                                        <a href="javascript:void(0);" onclick="closePopup('pop_main_bnr');return false" class="btn_close"><img src="https://dev.kdshop.co.kr/imgs/global/close_h24_white.svg" alt="닫기"></a>
+                                    </div>					
+                                </div>
+                                <div class="bnr_cont">
+                                    <div class="swiper-container">
+                                        <div class="swiper-wrapper" id="layerSwiperWrapper"><div class="swiper-slide">  <div class="cts"><div class="cell"><div class="is-single"><a href="https://www.google.com/" target="_blank"><img src="https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/182a24ae3f4c4bc4b351f4d1db6c774c.png" alt="푸터 팝업01"></a>  </div></div>  </div></div></div>
+                                    </div>
+                                    <div class="bnr_btns" style="display: none;">
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+<style>
+.splitPopWrap {box-shadow: -4px 3px 10px 0px rgba(0, 0, 0, 0.15); border:1px solid #000}
+.splitPopWrap .split_cont {position:relative; background:#fff}
+.splitPopWrap .split_cont:after {content:''; display:block; clear:both;}
+.splitPopWrap .split_cont > div {float:left; width:180px; height:210px; margin:1px; overflow:hidden}
+.splitPopWrap .split_cont > div a img {vertical-align:top}
+.split_mouseover {display: none; z-index:20000001; position:fixed; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;}
+
+/* 분할팝업 유형에 따른 추가 css */
+/* .pop_main_split.except .cts a,
+.pop_main_split.except .cts img {display:block;}
+.pop_main_split.except .cts .is-single > * {width:815px; height:305px;}
+.pop_main_split.except .cts .is-quarter > * {width:200px; height:305px; overflow:hidden;}
+.pop_main_split.except .cts .is-double {display:flex; flex-direction:column; gap:5px;}
+.pop_main_split.except .cts .is-double > * {width:200px; height:150px; overflow:hidden;} */
+.pop_main_split.v2 .swiper-slide .cts {gap:4px;}
+.pop_main_split.v2 .cts a,
+.pop_main_split.v2 .cts img {display:block;}
+.pop_main_split.v2 .cts .is-single > * {width:1040px; height:305px;}
+.pop_main_split.v2 .cts .is-quarter > * {width:250px; height:305px; overflow:hidden;}
+.pop_main_split.v2 .cts .is-double {display:flex; flex-direction:column; gap:4px;}
+.pop_main_split.v2 .cts .is-double > * {width:250px; height:150px; overflow:hidden;}
+</style>
+
+<script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/layerPopup.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    function closePopup(id, done) {
+        var obj = document.getElementById(id);
+        if (obj) {
+            var cb = document.getElementById(id+'_done');
+            if (cb && cb.checked) {
+                setCookieStd(id, 'done', 1);
+            }
+            if (typeof (done) != 'undefined' && done) {
+                setCookieStd(id, 'done', 1);
+            }
+            if (obj.classList.contains('btm_pop')) {  // 슬라이딩 팝업
+                obj.classList.remove('open');
+            } else if (obj.classList.contains('pop_main_bnr')) {  // 슬라이딩 팝업
+                obj.classList.remove('open');
+            } else {
+                obj.style.display = 'none';
+            }
+            //분할팝업 딤드처리
+            /* if (obj.classList.contains('pop_main_split')) {
+                // $('#splitDim').removeClass('on');
+                // 지금 닫은 것까지 포함해서, 화면에 남은 분할팝업이 하나도 없을 때만 딤드 제거
+                if ($('.pop_main_split:visible').length === 0) {
+                  $('#splitDim').removeClass('on');
+                }
+            } */
+        }
+    }
+    
+    var popups = {};
+    popups['popup_base369'] = { idx:369, width:100, height:100, left:0, top:0 }
+    popups['popup_base378'] = { left:0, top:0, baseX:0}
+    popups['popup_base376'] = { left:1000, top:200, baseX:0}
+    popups['popup_base374'] = { left:200, top:200, baseX:0}
+    popups['popup_base377'] = { left:500, top:500, baseX:0}
+    popups['popup_base393'] = { left:100, top:100, baseX:0 }
+    popups['popup_base395'] = { left:0, top:0, baseX:0 }
+    
+    
+    $(function() {
+        // 분할팝업UI개선 (2025.11)
+        // 여러개의 분할팝업이 있을 경우, 모두 닫기
+        /* var $splitPopup = $('.pop_main_split');
+        var $dim        = $('#splitDim');
+        if ($splitPopup.length > 0) {
+            $dim.addClass('on');
+        }
+        $dim.on('click', function () {
+             var $opened = $('.pop_main_split:visible');
+             if ($opened.length) {
+               $opened.each(function () {
+                   closePopup($(this).attr('id'));
+               });
+    
+               // 팝업 다 닫힌 후 dim 제거
+               $dim.removeClass('on');
+             } else {
+               $dim.removeClass('on');
+             }
+        }); */
+        
+        $('.dragPopup').parent().draggable({
+            start:function(){$(this).find('.dragDummy').css({'display':'block'});}
+            , stop:function(){$(this).find('.dragDummy').css({'display':'none'});}
+            , drag: function( event, ui ) {
+                if(ui.helper.data("basex") > 0){								
+                    ui.position.top = ui.offset.top;
+                    ui.position.left = ui.offset.left;
+                }
+            }
+        });
+        
+        layerPopup.guide = $('#container')[0];
+    
+        /* for (var id in popups) {
+            if (getCookie(id) != 'done') {
+                if (popups[id].idx) {
+                    window.open(
+                        "../common/popup.do?idx="+popups[id].idx,
+                        id,
+                        "width="+popups[id].width+", height="+popups[id].height+", left="+popups[id].left+", top="+popups[id].top+", status=yes"
+                    );
+                }
+                // 슬라이딩 팝업
+                else if (popups[id].type && (popups[id].type == 'btm_pop' || popups[id].type == 'div_pop')) {
+                    $('#'+id).addClass('open');
+                }
+                else {
+                    var $popup = $('#'+id);
+                    if ($popup.length) {
+                        $popup.appendTo('body').css({
+                            left: popups[id].left,
+                            right: popups[id].right,
+                            top: popups[id].top
+                        });
+                        if (popups[id].baseX) {
+                            layerPopup.addBase(id);
+                        }
+                        $popup.fadeIn(200);
+                    }
+                }
+            }
+        } */
+        
+        // 분할팝업 여러 개일 경우 각자 동작 
+        $('.pop_main_split').each(function(){
+            var popSplitSlides = $(this).find('.swiper-slide');
+            if(popSplitSlides.length > 1){
+                
+                const mainSplitSlide = $(this).find('.swiper-container');      
+                popSplitSwiper = new Swiper(mainSplitSlide, {
+                        pagination: {
+                          el: $(this).find('.bnr_paging'),
+                          clickable: true,
+                        },
+                        navigation: {
+                            nextEl: $(this).find('.swiper-button-next'),
+                            prevEl: $(this).find('.swiper-button-prev'),
+                        },
+                        loop:true,
+                        allowTouchMove:false,
+                    });
+                
+                $(this).find('.bnr_paging').show();
+                $(this).find('.bnr_btns').show();
+            }else{
+                $(this).find('.bnr_paging').hide();
+                $(this).find('.bnr_btns').hide();
+            }
+        });
+        
+    });
+    var popSplitSwiper = null;
+    
+    //분할팝업 배너 개수에 따라 팝업 너비 + 격자 배치 조정 
+    function adjustPopSplitLayout() {
+        adjustPopSplitLayoutV1(); // 구버전용
+        adjustPopSplitLayoutV2(); // v2용
+    }
+
+    function adjustPopSplitLayoutV1() {
+        // v2 아닌 팝업만 대상
+        var $popup = $('.pop_main_split').not('.v2');
+        if (!$popup.length) return;
+
+        var CARD_W = 200;
+        var GAP    = 5;
+        var PAD_L  = 25;
+        var PAD_R  = 24;
+
+        var maxCount = 0;
+
+        // v1: a 개수 기반으로 cols 계산
+        $popup.find('.swiper-slide .cts').each(function () {
+            var cnt = $(this).find('a').length;
+            if (cnt > maxCount) maxCount = cnt;
+        });
+
+        var cols;
+        if (maxCount <= 2) {        // 1~2개
+            cols = 2;
+        } else if (maxCount <= 4) { // 3~4개
+            cols = 2;
+        } else if (maxCount <= 6) { // 5~6개
+            cols = 3;
+        } else {                    // 7개 이상
+            cols = 4;
+        }
+
+        var popupWidth = PAD_L + PAD_R + CARD_W * cols + GAP * (cols - 1);
+        $popup.css('width', popupWidth + 'px');
+    }
+
+    function adjustPopSplitLayoutV2() {
+        // v2 전용 팝업만
+        $('.pop_main_split.v2').each(function () {
+            var $popup = $(this);
+            
+            var SINGLE_W = 1040; // 싱글배너 너비
+            var CARD_W = 250; // 쿼터, 더블쿼터 1칸 너비
+            var GAP    = 4; // 칸 사이 간격
+            var PAD_L  = 25;   
+            var PAD_R  = 24;   
+            
+            var hasSingle = false; // 싱글배너 존재 여부
+            var maxCells = 0;
+
+            $popup.find('.swiper-slide .cts').each(function(){
+                var $cts = $(this);
+
+                if($cts.find('.is-single').length) {
+                hasSingle = true;
+                return false;
+                }
+
+                var cnt = $cts.find('.cell .is-quarter, .cell .is-double').length;
+                if(cnt > maxCells) {
+                maxCells = cnt;
+
+                console.log('maxcells', cnt);
+                }
+            });
+
+            var popupWidth;
+
+            if(hasSingle) {
+                popupWidth = SINGLE_W + PAD_L + PAD_R;
+            } else {
+                if(maxCells < 1) maxCells = 1;
+
+                popupWidth = PAD_L + PAD_R + CARD_W * maxCells + GAP * (maxCells - 1);
+            }
+
+            $popup.css('width', popupWidth + 'px');
+        });
+    }
+    
+    //]]>
+    </script>
+<script>
+    //랜덤슬라이드
+    function return_index(div_elmt, index){
+        var r_index = Math.floor(Math.random()*($('div.'+div_elmt+' .swiper-slide:not(.swiper-slide-duplicate)').length));	
+        if(index != undefined){
+            const $container = $('div.' + div_elmt).eq(index);
+            const len = $container.find('.swiper-slide:not(.swiper-slide-duplicate)').length;
+            r_index = Math.floor(Math.random() * len);
+        }
+        return parseInt(r_index);
+    }
+    //롤링팝업
+    function popupSlide(){
+        var popSlide = $('.rolling_cont').find('.swiper-container');
+        var popLen = popSlide.find('.swiper-slide').length;
+        var popThumb = $('.rolling_tab').find('.swiper-container');
+        var popContAct = return_index('rolling_cont');
+        var popThumbAct = parseInt(popContAct)+parseInt(1);
+        
+        if($('.rolling_cont').length > 1){
+            $('.rolling_cont').each(function(index){
+                popSlide = $(this).find('.swiper-container');
+                popLen = popSlide.find('.swiper-slide').length;
+                popThumb = $('.rolling_tab').eq(index).find('.swiper-container');
+                popContAct = return_index('rolling_cont', index);
+                popThumbAct = parseInt(popContAct)+parseInt(1);
+                
+                var rollingThumbs = new Swiper(popThumb, {
+                    freeMode: true,
+                    slidesPerView: popLen, 
+                    watchSlidesVisibility: true,
+                    watchSlidesProgress: true,
+                });
+    
+                var rollingSwiper = new Swiper(popSlide, {
+                      loop: true,
+                      slidesPerView :1,		  
+                      pagination: {
+                        el: '.swiper-pagination',
+                        type: 'fraction',
+                      },
+                      navigation: {
+                        nextEl: popSlide.find('.swiper-button-next'),
+                        prevEl: popSlide.find('.swiper-button-prev'),
+                      },
+                      allowTouchMove : false 
+                      ,
+                      thumbs: {  
+                          swiper: rollingThumbs,
+                      },
+                      initialSlide : popContAct,
+                });
+            });
+        }else{
+            var rollingThumbs = new Swiper(popThumb, {
+                freeMode: true,
+                slidesPerView: popLen, 
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+            });
+    
+            var rollingSwiper = new Swiper(popSlide, {
+                  loop: true,
+                  slidesPerView :1,		  
+                  pagination: {
+                    el: '.swiper-pagination',
+                    type: 'fraction',
+                  },
+                  navigation: {
+                    nextEl: popSlide.find('.swiper-button-next'),
+                    prevEl: popSlide.find('.swiper-button-prev'),
+                  },
+                  allowTouchMove : false 
+                  ,
+                  thumbs: {  
+                      swiper: rollingThumbs,
+                  },
+                  initialSlide : popContAct,
+            });
+        }
+        $('.rolling_tab .swiper-slide').removeClass('swiper-slide-thumb-active');
+        $('.rolling_tab .swiper-slide:nth-child('+popThumbAct+')').addClass('swiper-slide-thumb-active');
+    }
+    
+    $(document).ready(function(){		
+        
+        popupSlide();
+        $(".splitPopWrap").each(function() {
+            var popLength = $(this).find(".small_pop").length;
+            if(popLength == 2 || popLength == 4) {
+                $(this).css({
+                    width : 364,			
+                });
+            }else if(popLength == 3 || popLength > 4) {
+                $(this).css({
+                    width : 546,			
+                });
+              }
+        });
+        
+        $(".splitPopWrap .split_cont > div").on("mouseenter focusin", function(){
+            if($(this).data("overimg") != undefined && $(this).data("overimg").length > 0) {
+                var leftPop = 182; //팝업 1개 width
+                
+                var leftPosi = $(this).offset().left + leftPop +  $(this).data("overwidth");
+                if(leftPosi > $(window).outerWidth()) {
+                    leftPop = (Number($(this).data("overwidth")) + 2) * -1;
+                }
+                            
+                var topPosi = $(this).parents('.splitPopWrap');
+                var top = topPosi.position().top ;
+                
+                $("#split_mouseover").css({
+                    top:  top ,
+                    left : $(this).offset().left + leftPop,
+                    width : $(this).data("overwidth"),
+                    height: $(this).data("overheight"),
+                    
+                });
+    
+                $("#split_mouseover").empty();
+                $("#split_mouseover").append("<img style=\"max-width:100%; max-height: 100%;\" src=\""+$(this).data("overimg")+"\" alt=\"\" />")
+                $("#split_mouseover").show();
+            }
+        });
+        
+        $(".splitPopWrap .split_cont > div").on("mouseout", function(){
+            splitOverPop();
+        });	
+    });
+    
+    function splitOverPop() {
+        $("#split_mouseover").hide();
+        $("#split_mouseover").empty();
+    }
+    
+    </script>
+<div id="splitDim" class="dim_split"></div>
+
+<span class="ui-helper-hidden-accessible" aria-relevant="additions" aria-live="assertive" role="status"></span>
+
+
+<style type="text/css">
+</style>
+
+<div class="pop_main_split--v2">
+    <div class="tab">다양한 혜택을 확인해보세요.</div>
+    <div class="bnr_inner content">
+        <div class="bnr_box">
+            <div class="bnr_cont">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="cts">
+                                <div class="cell">
+                                    <div class="is-double">
+                                        <a href='https://www.naver.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/26f720197fa7460089ee34a39e660bb5.png' alt='스마일 더블01'></a>
+                                        <a href='https://www.naver.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/be83dcaf6de344a0a149377b4cd9e474.png' alt='스마일 더블01'></a>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <div class="is-double">
+                                        <a href='https://www.google.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/b1c9f820e8244106b3a229867f7562f0.png' alt='스마일 더블03'></a>
+                                        <a href='https://www.google.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/ef577a43bb714a06819ee42a6b4de05f.png' alt='스마일 더블03'></a>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <div class="is-double">
+                                        <img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/5150c21d528449e4a09fd17b50d00cd7.png' alt='스마일 더블05'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bnr_paging"></div>
+                <div class="bnr_btns">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="bnr_noti">
+                    <div class="input_wrap">
+                        <span class="formdesign"><input type="checkbox" id="popup_base377_done"><label for="popup_base377_done" style="color:#999999">오늘 11하루 보지않기</label></span>
+                        <a href="javascript:void(0);" onclick="closePopup('popup_base377');return false" class="btn_close"><img src="https://dev.kdshop.co.kr/imgs/global/close_line_black.svg" alt="닫기"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pop_main_split--v2 pst-bottom">
+    <div class="tab">다양한 혜택을 확인해보세요.</div>
+    <div class="bnr_inner content">
+        <div class="bnr_box">
+            <div class="bnr_cont">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="cts">
+                                <div class="cell">
+                                    <div class="is-double">
+                                        <a href='https://www.naver.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/26f720197fa7460089ee34a39e660bb5.png' alt='스마일 더블01'></a>
+                                        <a href='https://www.naver.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/be83dcaf6de344a0a149377b4cd9e474.png' alt='스마일 더블01'></a>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <div class="is-double">
+                                        <a href='https://www.google.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/b1c9f820e8244106b3a229867f7562f0.png' alt='스마일 더블03'></a>
+                                        <a href='https://www.google.com/' target='_blank'><img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/ef577a43bb714a06819ee42a6b4de05f.png' alt='스마일 더블03'></a>
+                                    </div>
+                                </div>
+                                <div class="cell">
+                                    <div class="is-double">
+                                        <img src='https://d2vo4q2nx9xc96.cloudfront.net/dev/data/base/popup/5150c21d528449e4a09fd17b50d00cd7.png' alt='스마일 더블05'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bnr_paging"></div>
+                <div class="bnr_btns">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div class="bnr_noti">
+                    <div class="input_wrap">
+                        <span class="formdesign"><input type="checkbox" id="popup_base377_done"><label for="popup_base377_done" style="color:#999999">오늘 11하루 보지않기</label></span>
+                        <a href="javascript:void(0);" onclick="closePopup('popup_base377');return false" class="btn_close"><img src="https://dev.kdshop.co.kr/imgs/global/close_line_black.svg" alt="닫기"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- // 팝업 v2 -------------------- -->
+
+        </div>
+        <div id="footer">footer</div>
+    </div>
+</body>
+</html>
+

@@ -79,10 +79,9 @@
   <body>
     <div id="wrap">
       <div id="header">header</div>
-
-<script type="text/javascript" src="jscript/main_ui.js"></script>
 <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/jquery/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="https://dev.kdshop.co.kr/jscript/layerPopup.js"></script>
+<script type="text/javascript" src="jscript/main_ui.js"></script>
 
 <script type="text/javascript">
   //<![CDATA[
@@ -213,34 +212,86 @@
   var popSplitSwiper = null;
   
   //분할팝업 배너 개수에 따라 팝업 너비 + 격자 배치 조정 
-  // 신규 분할팝업은 해당 스크립트를 실행하지 않게 .except 추가
   function adjustPopSplitLayout() {
-    var $popup = $('.pop_main_split').not('.except');
+    adjustPopSplitLayoutV1(); // 구버전용
+    adjustPopSplitLayoutV2(); // v2용
+  }
+
+  function adjustPopSplitLayoutV1() {
+    // v2 아닌 팝업만 대상
+    var $popup = $('.pop_main_split').not('.v2');
     if (!$popup.length) return;
-  
-    var CARD_W = 200;  
-    var GAP    = 5;    
-    var PAD_L  = 25;   
-    var PAD_R  = 24;   
+
+    var CARD_W = 200;
+    var GAP    = 5;
+    var PAD_L  = 25;
+    var PAD_R  = 24;
+
     var maxCount = 0;
-    $('.pop_main_split:not(.except) .swiper-slide .cts').each(function () {
-        var cnt = $(this).find('a').length;
-        if (cnt > maxCount) maxCount = cnt;
+
+    // v1: a 개수 기반으로 cols 계산
+    $popup.find('.swiper-slide .cts').each(function () {
+      var cnt = $(this).find('a').length;
+      if (cnt > maxCount) maxCount = cnt;
     });
+
     var cols;
-    if (maxCount <= 2) {       
-        cols = 2;
-    } else if (maxCount <= 4) { 
-        cols = 2;
-    } else if (maxCount <= 6) { 
-        cols = 3;
-    } else {                    
-        cols = 4;
+    if (maxCount <= 2) {        // 1~2개
+      cols = 2;
+    } else if (maxCount <= 4) { // 3~4개
+      cols = 2;
+    } else if (maxCount <= 6) { // 5~6개
+      cols = 3;
+    } else {                    // 7개 이상
+      cols = 4;
     }
-  
-    // 팝업 전체 가로폭 계산
+
     var popupWidth = PAD_L + PAD_R + CARD_W * cols + GAP * (cols - 1);
     $popup.css('width', popupWidth + 'px');
+  }
+
+  function adjustPopSplitLayoutV2() {
+    // v2 전용 팝업만
+    $('.pop_main_split.v2').each(function () {
+      var $popup = $(this);
+    
+      var SINGLE_W = 1040; // 싱글배너 너비
+      var CARD_W = 250; // 쿼터, 더블쿼터 1칸 너비
+      var GAP    = 4; // 칸 사이 간격
+      var PAD_L  = 25;   
+      var PAD_R  = 24;   
+      
+      var hasSingle = false; // 싱글배너 존재 여부
+      var maxCells = 0;
+
+      $popup.find('.swiper-slide .cts').each(function(){
+        var $cts = $(this);
+
+        if($cts.find('.is-single').length) {
+          hasSingle = true;
+          return false;
+        }
+
+        var cnt = $cts.find('.cell .is-quarter, .cell .is-double').length;
+        if(cnt > maxCells) {
+          maxCells = cnt;
+
+          console.log('maxcells', cnt);
+        }
+      });
+
+      var popupWidth;
+
+      if(hasSingle) {
+        popupWidth = SINGLE_W + PAD_L + PAD_R;
+      } else {
+        if(maxCells < 1) maxCells = 1;
+
+        popupWidth = PAD_L + PAD_R + CARD_W * maxCells + GAP * (maxCells - 1);
+      }
+
+      $popup.css('width', popupWidth + 'px');
+    });
   }
   
   //]]>
@@ -352,16 +403,18 @@
   }
   </script>
   <style type="text/css">
-    .pop_main_split.except .cts a,
-    .pop_main_split.except .cts img {display:block;}
-    .pop_main_split.except .cts .is-single > * {width:815px; height:305px;}
-    .pop_main_split.except .cts .is-quarter > * {width:200px; height:305px; overflow:hidden;}
-    .pop_main_split.except .cts .is-double {display:flex; flex-direction:column; gap:5px;}
-    .pop_main_split.except .cts .is-double > * {width:200px; height:150px; overflow:hidden;}
+    .pop_main_split.v2 .swiper-slide .cts {gap:4px;}
+    .pop_main_split.v2 .cts a,
+    .pop_main_split.v2 .cts img {display:block;}
+    .pop_main_split.v2 .cts .is-single > * {width:1040px; height:305px;}
+    .pop_main_split.v2 .cts .is-quarter > * {width:250px; height:305px; overflow:hidden;}
+    .pop_main_split.v2 .cts .is-double {display:flex; flex-direction:column; gap:4px;}
+    .pop_main_split.v2 .cts .is-double > * {width:250px; height:150px; overflow:hidden;}
   </style>
   <!-- 분할팝업 종료 -->
   <div id="splitDim" class="dim_split"></div>
-  <div class="pop_main_split except" id="popup_base364" data-basex="0" style="position:fixed;z-index:10000000;left:0px;top:0px;"> 
+  <div class="pop_main_split v2" id="popup_base364" data-basex="0" style="position:fixed;z-index:10000000;left:0px;top:0px;">
+    <h4>[스마일] 분할 레이어 / 쿼터</h4>
     <a href="javascript:void(0);" onclick="closePopup('popup_base364');return false" class="btn_split_close"><img src="https://dev.kdshop.co.kr/imgs/global/bnr_close.svg" alt="닫기"></a>
     <div class="bnr_inner">
       <div class="bnr_box">
@@ -493,21 +546,23 @@
     </div>
   </div>
   
-  <div class="pop_main_split" id="popup_base363" data-basex="0" style="position:fixed;z-index:10000000;left:0px;top:0px;">
+  <div class="pop_main_split v2" id="popup_base363" data-basex="0" style="position:fixed;z-index:10000000;left:0px;top:0px;">
+    <h4>[스마일] 분할 레이어 / 쿼터</h4>
     <a href="javascript:void(0);" onclick="closePopup('popup_base363');return false" class="btn_split_close"><img src="https://dev.kdshop.co.kr/imgs/global/bnr_close.svg" alt="닫기"></a>
     <div class="bnr_inner">
       <div class="bnr_box">
         <div class="bnr_cont">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <!-- 단일 일 때는 무조건 1개의 swiper-slide가 생김 -->
-              <div class="swiper-slide">
-                <div class="cts"><img src='images/ex-1.png' alt='1'></div>
-              </div>
               <!-- 쿼터 or 더블쿼더 -->
               <div class="swiper-slide">
                 <div class="cts">
-                  <div class="cell"><img src='images/ex-2.png' alt='1'></div>
+                  <div class="cell">
+                    <div class="is-quarter"><img src='images/ex-1.png' alt='1'></div>
+                  </div>
+                  <div class="cell">
+                    <div class="is-quarter"><img src='images/ex-2.png' alt='1'></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -521,6 +576,40 @@
             <div class="input_wrap">
               <span class="formdesign"><input type="checkbox" id="popup_base363_done"><label for="popup_base363_done">오늘 하루 보지않기</label></span>
               <a href="javascript:void(0);" onclick="closePopup('popup_base363');return false" class="btn_close"><img src="https://dev.kdshop.co.kr/imgs/global/close_line_black.svg" alt="닫기"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pop_main_split v2" id="popup_base362" data-basex="0" style="position:fixed;z-index:10000000;left:0px;top:0px;">
+    <h4>[스마일] 분할 레이어 / 쿼터</h4>
+    <a href="javascript:void(0);" onclick="closePopup('popup_base362');return false" class="btn_split_close"><img src="https://dev.kdshop.co.kr/imgs/global/bnr_close.svg" alt="닫기"></a>
+    <div class="bnr_inner">
+      <div class="bnr_box">
+        <div class="bnr_cont">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <!-- 쿼터 or 더블쿼더 -->
+              <div class="swiper-slide">
+                <div class="cts">
+                  <div class="cell">
+                    <div class="is-quarter"><img src='images/ex-1.png' alt='1'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bnr_paging"></div>
+          <div class="bnr_btns">
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+          <div class="bnr_noti">
+            <div class="input_wrap">
+              <span class="formdesign"><input type="checkbox" id="popup_base362_done"><label for="popup_base362_done">오늘 하루 보지않기</label></span>
+              <a href="javascript:void(0);" onclick="closePopup('popup_base362');return false" class="btn_close"><img src="https://dev.kdshop.co.kr/imgs/global/close_line_black.svg" alt="닫기"></a>
             </div>
           </div>
         </div>

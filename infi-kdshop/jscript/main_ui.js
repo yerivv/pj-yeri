@@ -444,24 +444,24 @@ function popSplitSlide() {
     });
 
     
-    // var $mainSplitSlide = $popSplitWrap.find('.swiper-container');
+    var $mainSplitSlide = $popSplitWrap.find('.swiper-container');
 
-    // popSplitSwiper = new Swiper($mainSplitSlide[0], {
-    //     pagination: {
-    //         el: $popSplitWrap.find('.bnr_paging')[0],
-    //         clickable: true
-    //     },
-    //     navigation: {
-    //         nextEl: $popSplitWrap.find('.swiper-button-next')[0],
-    //         prevEl: $popSplitWrap.find('.swiper-button-prev')[0]
-    //     },
-    //     loop: true,
-    //     on: {
-    //         init: function () {
-    //             adjustPopSplitLayout();      //배너 개수별 너비정의
-    //         }
-    //     }
-    // });
+    popSplitSwiper = new Swiper($mainSplitSlide[0], {
+        pagination: {
+            el: $popSplitWrap.find('.bnr_paging')[0],
+            clickable: true
+        },
+        navigation: {
+            nextEl: $popSplitWrap.find('.swiper-button-next')[0],
+            prevEl: $popSplitWrap.find('.swiper-button-prev')[0]
+        },
+        loop: true,
+        on: {
+            init: function () {
+                adjustPopSplitLayout();      //배너 개수별 너비정의
+            }
+        }
+    });
 }
 
 function fnMainMainTimesaleAlarmActAjax(mainTimesaleIdx){
@@ -578,16 +578,15 @@ $(function(){
 	}	
 
 	// 위의 다중 팝업 확인 후 스와이퍼 실행되는 부분에 옮김
-	// var popSplitSlides = document.querySelectorAll('.pop_main_split .swiper-slide');
-	// if(popSplitSlides.length > 1){
-	// 	popSplitSlide();
-	// 	$('.pop_main_split .bnr_paging').show();
-	// 	$('.pop_main_split .bnr_btns').show();
-	// }else{
-	// 	$('.pop_main_split .bnr_btns').hide();
-	// 	$('.pop_main_split .bnr_paging').hide();
-	// }
-    popSplitSlide();
+	var popSplitSlides = document.querySelectorAll('.pop_main_split .swiper-slide');
+	if(popSplitSlides.length > 1){
+		popSplitSlide();
+		$('.pop_main_split .bnr_paging').show();
+		$('.pop_main_split .bnr_btns').show();
+	}else{
+		$('.pop_main_split .bnr_btns').hide();
+		$('.pop_main_split .bnr_paging').hide();
+	}
 	adjustPopSplitLayout();
 })
 $(window).on('scroll',function(){
