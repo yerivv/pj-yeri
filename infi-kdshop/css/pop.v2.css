@@ -1,61 +1,5 @@
 
 /* 메인 분할팝업 v2 추가 */
-.pop_main_split.v2 {
-    min-width: 250px;
-    box-shadow: none;
-    /* box-shadow: 3px 3px 18px 0 rgba(0, 0, 0, 0.16); */
-    overflow: initial;
-}
-
-.pop_main_split.v2 h4 {
-    position: relative;
-    border: 1px solid #e8340c;
-    border-bottom: none 0;
-}
-.pop_main_split.v2 h4::before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background-color: #fff;
-}
-.pop_main_split.v2 h4::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: -1px;
-    width: 1px;
-    height: 30px;
-    background-color: #e8340c;
-}
-
-.pop_main_split.v2 .btn_split_close {
-    top: -10px;
-}
-
-.pop_main_split.v2 h4 + .btn_split_close {
-    right: 0px;
-    top: 44px;
-}
-
-.pop_main_split.v2 .bnr_inner {
-    overflow: initial;
-    border-radius: 0;
-    
-}
-
-.pop_main_split.v2 .bnr_box {
-    border-radius: 29px;
-    box-shadow: 3px 3px 18px 0 rgba(0, 0, 0, 0.16);
-    background-color: #fff;
-    border: 1px solid #e8340c;
-}
-
-.pop_main_split.v2 .bnr_cont {
-    background-color: transparent;
-}
 
 .pop_main_split.v2 {width: auto; max-width: 1063px;}
 .pop_main_split.v2 .swiper-slide .cts {gap:4px;}
@@ -97,3 +41,38 @@
     top: 0;
     bottom: auto;
 }
+
+
+/* v2 메인 하단팝업 리뉴얼 
+#pop_main_bnr {display:none; width:100vw; margin:0 auto;}
+#pop_main_bnr.open {display:block;}
+#pop_main_bnr .bnr_inner {width:100%; z-index:101;}
+#pop_main_bnr .bnr_bg {position:fixed; justify-content:center; align-items:center; bottom:0; left:0; z-index:10000001; width:100%; height:100%; background-color: rgba(0, 0, 0, 0.55);}
+#pop_main_bnr .bnr_box {position:absolute; bottom:-240px; left:50%; margin-left:-550px; z-index:101; width:100%; max-width:1100px; background-color:transparent; transition:all 1s ease;}
+#pop_main_bnr .bnr_cont {position:relative; width:100%; height:225px; text-align:center; overflow:hidden; border-radius:29px 29px 0 0; isolation:isolate; background:#fff;}
+#pop_main_bnr .bnr_noti {position:relative; width:100%; height:30px; padding:10px; overflow:hidden; box-sizing:border-box;}
+#pop_main_bnr .input_wrap {position:absolute; overflow:hidden; top:0; right:0; padding:0 10px 0 0;}
+#pop_main_bnr .formdesign {float:left; padding:3px 0 2px 25px; margin-right:10px;}
+#pop_main_bnr .formdesign input + label:before {top:5px;width:20px; height:20px;}
+#pop_main_bnr .formdesign input + label {margin-left:0; font-size:15px; color:#fff;}
+#pop_main_bnr .input_wrap .btn_close {display:block; float:left; width:15px; height:15px; padding:8px 15px 7px 10px; }
+#pop_main_bnr .input_wrap .btn_close img {width:100%;}
+#pop_main_bnr .swiper-container {position:static; }
+#pop_main_bnr .swiper-pagination-bullets .swiper-pagination-bullet {width:8px; height:8px; background-color:#cecece}
+#pop_main_bnr .swiper-pagination-bullets .swiper-pagination-bullet-active {width:22px; height:8px; border-radius:4px; background-color:#fff; }
+#pop_main_bnr .bnr_btns {display:none;}
+#pop_main_bnr .swiper-button-next {overflow:hidden; right:40px; width:44px; height:44px; background:url('../imgs/global/arrow_right_circle.svg'); color:transparent; text-indent:100%; }
+#pop_main_bnr .swiper-button-prev {overflow:hidden; left:40px; width:44px; height:44px; background:url('../imgs/global/arrow_left_circle.svg'); color:transparent;text-indent:100%; }
+#pop_main_bnr .ico_ad {position:absolute; top:0; left:0; width:28px; height:16px; line-height:18px; font-size:13px; color:#a4a4a5; background:#fff; border-radius:4px; text-align:center; box-sizing:border-box; opacity:.7} */
+
+#pop_main_bnr.v2 .bnr_box {transition: bottom 1s ease;}
+
+
+.pop_main_split.v2 .dragPopup,
+.rollingPopWrap .dragPopup {position: relative; z-index: 1;}
+
+
+.popupWrap .popupCont {position: relative; z-index: 1;}
+.popupWrap .popupDim {position:fixed; top:0; right:0; bottom:0; left:0; z-index:0; width:100%; height:100%; background-color: rgba(0, 0, 0, 0.55);}
+.popupWrap[data-bg="dim"] .popupDim {opacity:1;pointer-events:auto;}
+.popupWrap[data-bg="none"] .popupDim {opacity:0;pointer-events:none;overflow: initial;}
