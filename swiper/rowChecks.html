@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css" />
+
+    <style>
+      html, body { position: relative; height: 100%; }
+
+      body {
+        background: #fff;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper-block {
+        width: 1200px;
+        margin: 60px auto 0;
+      }
+
+      .swiper {
+        width: 100%;
+        padding-bottom: 25px;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #f6f6f6;
+        padding: 15px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.2s;
+        border-radius:100px;
+      }
+
+      .swiper-slide.is-active {
+        background: burlywood;
+        color: #fff;
+      }
+
+      .view-all-btn {
+        position: absolute;
+        right: 0; bottom: 0;
+        display: block;
+        margin: 12px auto 0;
+        padding: 8px 24px;
+        font-size: 14px;
+        cursor: pointer;
+        background: none;
+        border: 0 none;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+        text-decoration: underline;
+      }
+
+      .contents {
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 32px;
+        min-height: 160px;
+        margin-top: 24px;
+        transition: opacity 0.2s;
+      }
+
+      .contents.fade { opacity: 0; }
+
+      .contents-inner { display: flex; gap: 24px; align-items: flex-start; }
+
+      .contents-thumb {
+        width: 120px;
+        height: 120px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        flex-shrink: 0;
+        background: beige;
+      }
+
+      .contents-info { flex: 1; }
+
+      .contents-label {
+        font-size: 11px;
+        color: burlywood;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .contents-title { font-size: 24px; font-weight: 600; margin: 0 0 10px; }
+
+      .contents-desc { font-size: 14px; color: #aaa; line-height: 1.7; margin: 0 0 16px; }
+
+      .contents-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+      .tag {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 100px;
+        background: burlywood;
+        color: #fff;
+      }
+
+      .divider {
+        width: 1200px;
+        margin: 48px auto;
+        border: none;
+        border-top: 1px solid #eee;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .modal-panel {
+        background: #fff;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        color: #333;
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-bottom: 1px solid #eee;
+        font-weight: 500;
+      }
+
+      .modal-grid {
+        display: grid;
+        gap: 6px;
+        padding: 16px;
+      }
+
+      .modal-item {
+        background: #f5f5f0;
+        text-align: center;
+        padding: 16px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: background 0.15s, border-color 0.15s;
+        font-size: 13px;
+      }
+
+      .modal-item:hover { background: #e8e8e0; }
+
+      .modal-item.is-active {
+        background: #dbeafe;
+        border-color: #1a56db;
+        color: #1a56db;
+        font-weight: 500;
+      }
+
+      .modal-item-emoji { font-size: 24px; display: block; margin-bottom: 6px; }
+
+      .swiper-pagination.swiper-pagination-progressbar {
+        top: auto; bottom: 0; right: 0;
+        width: 200px; margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Row 1 -->
+    <div class="swiper-block" id="row1">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">Brand 1</div>
+          <div class="swiper-slide">Brand 2</div>
+          <div class="swiper-slide">Brand 3</div>
+          <div class="swiper-slide">Brand 4</div>
+          <div class="swiper-slide">Brand 5</div>
+          <div class="swiper-slide">Brand 6</div>
+          <div class="swiper-slide">Brand 7</div>
+          <div class="swiper-slide">Brand 8</div>
+          <div class="swiper-slide">Brand 9</div>
+          <div class="swiper-slide">Brand 10</div>
+        </div>
+        <div class="swiper-pagination"></div>
+
+        <button class="view-all-btn" type="button">전체보기</button>
+      </div>
+      <div class="contents"><div class="contents-inner"></div></div>
+      <div class="modal-overlay" style="display:none;">
+        <div class="modal-panel">
+          <div class="modal-header">
+            <span>전체 브랜드 보기</span>
+            <button class="modal-close-btn" type="button">✕</button>
+          </div>
+          <div class="modal-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Row 2 -->
+    <div class="swiper-block" id="row2">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">Brand 1</div>
+          <div class="swiper-slide">Brand 2</div>
+          <div class="swiper-slide">Brand 3</div>
+          <div class="swiper-slide">Brand 4</div>
+          <div class="swiper-slide">Brand 5</div>
+          <div class="swiper-slide">Brand 6</div>
+          <div class="swiper-slide">Brand 7</div>
+          <div class="swiper-slide">Brand 8</div>
+          <div class="swiper-slide">Brand 9</div>
+          <div class="swiper-slide">Brand 10</div>
+          <div class="swiper-slide">Brand 11</div>
+          <div class="swiper-slide">Brand 12</div>
+          <div class="swiper-slide">Brand 13</div>
+          <div class="swiper-slide">Brand 14</div>
+          <div class="swiper-slide">Brand 15</div>
+          <div class="swiper-slide">Brand 16</div>
+          <div class="swiper-slide">Brand 17</div>
+          <div class="swiper-slide">Brand 18</div>
+          <div class="swiper-slide">Brand 19</div>
+          <div class="swiper-slide">Brand 20</div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <button class="view-all-btn" type="button">전체보기</button>
+      </div>
+      <div class="contents"><div class="contents-inner"></div></div>
+      <div class="modal-overlay" style="display:none;">
+        <div class="modal-panel">
+          <div class="modal-header">
+            <span>전체 브랜드 보기</span>
+            <button class="modal-close-btn" type="button">✕</button>
+          </div>
+          <div class="modal-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+
+    <script>
+      // ====================================================
+      // 브랜드 데이터
+      // ====================================================
+      const brandData = [
+        { emoji: '👟', name: 'Brand 1',  category: 'Sneakers', desc: '혁신적인 디자인과 최고의 착화감을 자랑하는 글로벌 스니커즈 브랜드입니다.', tags: ['스니커즈','스포츠','캐주얼'] },
+        { emoji: '👗', name: 'Brand 2',  category: 'Fashion',  desc: '트렌디한 감각과 합리적인 가격으로 MZ세대에게 사랑받는 패션 브랜드입니다.', tags: ['패션','트렌드','여성'] },
+        { emoji: '⌚', name: 'Brand 3',  category: 'Watch',    desc: '100년 전통의 시계 장인 정신을 현대적 감각으로 재해석한 럭셔리 시계 브랜드입니다.', tags: ['시계','럭셔리','액세서리'] },
+        { emoji: '👜', name: 'Brand 4',  category: 'Bag',      desc: '이탈리아 장인이 만드는 프리미엄 가죽 핸드백 브랜드입니다.', tags: ['가방','가죽','프리미엄'] },
+        { emoji: '🧴', name: 'Brand 5',  category: 'Beauty',   desc: '자연 유래 성분으로 만든 친환경 뷰티 브랜드입니다.', tags: ['뷰티','스킨케어','친환경'] },
+        { emoji: '🏃', name: 'Brand 6',  category: 'Sports',   desc: '프로 선수들이 신뢰하는 퍼포먼스 스포츠웨어 브랜드입니다.', tags: ['스포츠','러닝','퍼포먼스'] },
+        { emoji: '🕶️', name: 'Brand 7', category: 'Eyewear',  desc: 'UV 차단 기능과 세련된 프레임 디자인으로 인기 있는 아이웨어 브랜드입니다.', tags: ['선글라스','아이웨어','여름'] },
+        { emoji: '🧥', name: 'Brand 8',  category: 'Outdoor',  desc: '극한의 환경에서도 보온성과 방수성을 유지하는 아웃도어 전문 브랜드입니다.', tags: ['아웃도어','등산','방수'] },
+        { emoji: '💍', name: 'Brand 9',  category: 'Jewelry',  desc: '세공 장인이 하나하나 손으로 만드는 파인 주얼리 브랜드입니다.', tags: ['주얼리','반지','선물'] },
+        { emoji: '👒', name: 'Brand 10', category: 'Hat',      desc: '다양한 소재와 스타일의 모자를 제안하는 헤드웨어 전문 브랜드입니다.', tags: ['모자','캡','헤드웨어'] },
+        { emoji: '🎒', name: 'Brand 11', category: 'Backpack', desc: '수납 효율과 인체공학적 설계로 장거리 여행에 최적화된 백팩 브랜드입니다.', tags: ['백팩','여행','수납'] },
+        { emoji: '👞', name: 'Brand 12', category: 'Shoes',    desc: '클래식한 디자인과 현대적 편안함을 결합한 구두 전문 브랜드입니다.', tags: ['구두','오피스','클래식'] },
+        { emoji: '🧣', name: 'Brand 13', category: 'Scarf',    desc: '캐시미어와 울 소재를 활용한 고급 스카프 및 니트 액세서리 브랜드입니다.', tags: ['스카프','캐시미어','겨울'] },
+        { emoji: '🩱', name: 'Brand 14', category: 'Swimwear', desc: '퍼포먼스 수영복부터 비치 패션까지 다루는 브랜드입니다.', tags: ['수영복','비치','여름'] },
+        { emoji: '🧤', name: 'Brand 15', category: 'Gloves',   desc: '터치스크린 호환 기능을 갖춘 스마트 글러브로 유명한 액세서리 브랜드입니다.', tags: ['장갑','겨울','스마트'] },
+        { emoji: '🩺', name: 'Brand 16', category: 'Wellness', desc: '건강한 라이프스타일을 위한 웰니스 전문 브랜드입니다.', tags: ['웰니스','건강','라이프스타일'] },
+        { emoji: '🌂', name: 'Brand 17', category: 'Umbrella', desc: '강풍에도 뒤집어지지 않는 특허 기술을 보유한 프리미엄 우산 브랜드입니다.', tags: ['우산','방풍','프리미엄'] },
+        { emoji: '👟', name: 'Brand 18',  category: 'Sneakers', desc: '혁신적인 디자인과 최고의 착화감을 자랑하는 글로벌 스니커즈 브랜드입니다.', tags: ['스니커즈','스포츠','캐주얼'] },
+        { emoji: '👗', name: 'Brand 19',  category: 'Fashion',  desc: '트렌디한 감각과 합리적인 가격으로 MZ세대에게 사랑받는 패션 브랜드입니다.', tags: ['패션','트렌드','여성'] },
+        { emoji: '⌚', name: 'Brand 20',  category: 'Watch',    desc: '100년 전통의 시계 장인 정신을 현대적 감각으로 재해석한 럭셔리 시계 브랜드입니다.', tags: ['시계','럭셔리','액세서리'] },
+      ];
+
+      // ====================================================
+      // ✅ initBrandSwiper(blockId, options)
+      //    전시관리에서 노출 여부에 따라 필요한 block만 호출
+      // ====================================================
+      function initBrandSwiper(blockId, { perView, rows, data }) {
+        const block = document.getElementById(blockId);
+
+        // block이 없거나 미노출 처리된 경우 안전하게 종료
+        if (!block) return;
+
+        const perPage    = perView * rows;
+        const swiperEl   = block.querySelector('.swiper');
+        const contentsEl = block.querySelector('.contents');
+        const innerEl    = block.querySelector('.contents-inner');
+        const viewAllBtn = block.querySelector('.view-all-btn');
+        const modalEl    = block.querySelector('.modal-overlay');
+        const modalGrid  = block.querySelector('.modal-grid');
+        const closeBtn   = block.querySelector('.modal-close-btn');
+        const slideEls   = block.querySelectorAll('.swiper-slide');
+
+        // 모달 열 수를 perView에 맞춤
+        modalGrid.style.gridTemplateColumns = `repeat(${perView}, 1fr)`;
+
+        let activeIndex = 0;
+
+        const swiper = new Swiper(swiperEl, {
+          slidesPerView: perView,
+          slidesPerGroup: perView,
+          grid: { rows, fill: 'row' },
+          spaceBetween: 30,
+          pagination: {
+            el: block.querySelector('.swiper-pagination'),
+            // clickable: true,
+            type: 'progressbar',
+          },
+        });
+
+        // 슬라이드 직접 클릭
+        slideEls.forEach((el, i) => {
+          el.addEventListener('click', () => setActive(i));
+        });
+
+        function setActive(index) {
+          activeIndex = index;
+          slideEls.forEach((el, i) => el.classList.toggle('is-active', i === index));
+          updateContents(index);
+        }
+
+        function updateContents(index) {
+          const item = data[index];
+          if (!item) return;
+
+          contentsEl.classList.add('fade');
+          setTimeout(() => {
+            innerEl.innerHTML = `
+              <div class="contents-thumb">${item.emoji}</div>
+              <div class="contents-info">
+                <div class="contents-label">${item.category}</div>
+                <h2 class="contents-title">${item.name}</h2>
+                <p class="contents-desc">${item.desc}</p>
+                <div class="contents-tags">
+                  ${item.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                </div>
+              </div>
+            `;
+            contentsEl.classList.remove('fade');
+          }, 150);
+        }
+
+        // 초기 active
+        setActive(0);
+
+        // 전체보기 버튼
+        viewAllBtn.addEventListener('click', () => {
+          modalGrid.innerHTML = data.map((item, i) => `
+            <div class="modal-item ${i === activeIndex ? 'is-active' : ''}" data-index="${i}">
+              <span class="modal-item-emoji">${item.emoji}</span>
+              ${item.name}
+            </div>
+          `).join('');
+
+          modalGrid.querySelectorAll('.modal-item').forEach(el => {
+            el.addEventListener('click', () => {
+              const index = Number(el.dataset.index);
+              setActive(index);
+              swiper.slideTo(Math.floor(index / perPage) * perView);
+              closeModal();
+            });
+          });
+
+          modalEl.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        modalEl.addEventListener('click', e => { if (e.target === modalEl) closeModal(); });
+
+        function closeModal() {
+          modalEl.style.display = 'none';
+        }
+      }
+
+
+      // ====================================================
+      // ✅ 전시관리 조건에 따라 필요한 block만 개별 호출
+      //    - 노출: initBrandSwiper 호출
+      //    - 미노출 or 미등록: 해당 줄 주석 처리 or 삭제
+      // ====================================================
+      initBrandSwiper('row1', {
+        perView: 5,
+        rows: 1,
+        data: brandData.slice(0, 10),   // row1은 10개만 사용
+      });
+
+      initBrandSwiper('row2', {
+        perView: 7,
+        rows: 2,
+        data: brandData,                 // row2는 전체 17개 사용
+      });
+
+      // 미노출 예시 — 아래처럼 해당 호출만 제거하면 됨
+      // initBrandSwiper('row3', { perView: 7, rows: 2, data: brandData });
+    </script>
+  </body>
+</html>

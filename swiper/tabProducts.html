@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tab + Product Swiper Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      background: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      color: #222;
+      margin: 0;
+      padding: 40px 0 80px;
+    }
+
+    /* ── 탭 ── */
+    .tab-swiper-block {
+      position: relative;
+      width: 500px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .tab-swiper-wrap { overflow: hidden; }
+
+    .tab-swiper .swiper-wrapper { align-items: center; }
+    .tab-swiper .swiper-slide   { width: auto !important; }
+
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 20px;
+      border: 1px solid #ddd;
+      border-radius: 100px;
+      background: #fff;
+      color: #666;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .tab-btn:hover { background: #f5f5f5; }
+
+    .tab-btn.is-active {
+      background: #1a56db;
+      color: #fff;
+      border-color: #1a56db;
+      font-weight: 500;
+    }
+
+    .tab-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #555;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: opacity 0.2s;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .tab-arrow.swiper-button-disabled { opacity: 0; pointer-events: none; }
+    .tab-arrow-prev { left: 0; }
+    .tab-arrow-next { right: 0; }
+
+    /* ── 상품 ── */
+    .product-section {
+      width: 1200px;
+      margin: 20px auto 0;
+      padding: 0 24px;
+    }
+
+    .product-panel   { display: none; }
+    .product-panel.is-active { display: block; }
+
+    .prod-swiper-block { position: relative; padding: 0 20px; }
+
+    .prod-swiper-wrap { overflow: hidden; }
+
+    .prod-swiper .swiper-slide {
+      height: calc((100% - 16px) / 2) !important;
+    }
+
+    .prod-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      cursor: pointer;
+      transition: box-shadow 0.15s;
+    }
+
+    .prod-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
+    .prod-thumb {
+      aspect-ratio: 4 / 3;
+      background: #f8f8f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      flex-shrink: 0;
+    }
+
+    .prod-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .prod-info {
+      padding: 12px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .prod-badge  { font-size: 11px; font-weight: 600; color: #e74c3c; margin: 0; }
+    .prod-name   { font-size: 14px; font-weight: 500; color: #222; line-height: 1.4; margin: 0; }
+    .prod-price  { font-size: 15px; font-weight: 700; color: #1a56db; margin: 4px 0 0; }
+
+    .prod-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: opacity 0.2s;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .prod-arrow.swiper-button-disabled { opacity: 0.2; pointer-events: none; }
+    .prod-arrow-prev { left: -20px; }
+    .prod-arrow-next { right: -20px; }
+
+    .prod-pagination {
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .prod-pagination .swiper-pagination-bullet {
+      width: 8px; height: 8px;
+      background: #ccc;
+      opacity: 1;
+    }
+
+    .prod-pagination .swiper-pagination-bullet-active {
+      background: #1a56db;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── 탭 스와이퍼 ── -->
+  <div class="tab-swiper-block">
+    <button class="tab-arrow tab-arrow-prev" id="tabPrev">&#8249;</button>
+    <div class="tab-swiper-wrap">
+      <div class="swiper tab-swiper" id="tabSwiper">
+        <div class="swiper-wrapper">
+          <!-- 탭 버튼은 JS가 데이터 보고 생성 -->
+        </div>
+      </div>
+    </div>
+    <button class="tab-arrow tab-arrow-next" id="tabNext">&#8250;</button>
+  </div>
+
+  <!-- ── 상품 패널 ── -->
+  <div class="product-section" id="productSection">
+    <!-- 패널도 JS가 생성 -->
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+
+  <script>
+    // ============================================================
+    // 예제 데이터 (실제 개발 시 JSP JSTL or API 응답으로 교체)
+    // ============================================================
+    const TAB_DATA = [
+      {
+        tabId: 'shoes', tabName: '신발',
+        products: [
+          { prdId: 'p01', prdName: '에어맥스 270', price: '189,000원', badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'p02', prdName: '하이힐 클래식', price: '129,000원', badgeTxt: '',     imgUrl: '' },
+          { prdId: 'p03', prdName: '워커 부츠',     price: '219,000원', badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 'p04', prdName: '여름 샌들',     price: '59,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'p05', prdName: '더비 슈즈',     price: '159,000원', badgeTxt: '',     imgUrl: '' },
+          { prdId: 'p06', prdName: '플랫 로퍼',     price: '89,000원',  badgeTxt: 'SALE', imgUrl: '' },
+          { prdId: 'p07', prdName: '조깅화 X1',     price: '149,000원', badgeTxt: '',     imgUrl: '' },
+          { prdId: 'p08', prdName: '롱부츠 블랙',   price: '249,000원', badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'p09', prdName: '슬리퍼 폼',     price: '39,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'p10', prdName: '러닝화 Pro',    price: '199,000원', badgeTxt: 'BEST', imgUrl: '' },
+        ]
+      },
+      {
+        tabId: 'bag', tabName: '가방',
+        products: [
+          { prdId: 'b01', prdName: '미니 크로스백', price: '89,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'b02', prdName: '캐주얼 백팩',   price: '119,000원', badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 'b03', prdName: '파우치 백',     price: '49,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'b04', prdName: '비즈니스 백',   price: '189,000원', badgeTxt: '',     imgUrl: '' },
+          { prdId: 'b05', prdName: '쇼퍼백 L',      price: '79,000원',  badgeTxt: 'SALE', imgUrl: '' },
+          { prdId: 'b06', prdName: '버킷 백',       price: '139,000원', badgeTxt: '',     imgUrl: '' },
+        ]
+      },
+      {
+        tabId: 'clothes', tabName: '의류',
+        products: [
+          { prdId: 'c01', prdName: '플리츠 원피스',  price: '99,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'c02', prdName: '오버핏 코트',    price: '289,000원', badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 'c03', prdName: '베이직 티셔츠',  price: '29,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'c04', prdName: '슬림 데님',      price: '79,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'c05', prdName: '울 머플러',      price: '59,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'c06', prdName: '터치 글러브',    price: '39,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'c07', prdName: '린넨 숏팬츠',    price: '49,000원',  badgeTxt: 'SALE', imgUrl: '' },
+          { prdId: 'c08', prdName: '볼캡 블랙',      price: '35,000원',  badgeTxt: '',     imgUrl: '' },
+        ]
+      },
+      {
+        tabId: 'acc', tabName: '액세서리',
+        products: [
+          { prdId: 'a01', prdName: '클래식 워치',    price: '349,000원', badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'a02', prdName: '실버 링',        price: '79,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'a03', prdName: '오버 선글라스',  price: '89,000원',  badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 'a04', prdName: '비즈 네크리스',  price: '59,000원',  badgeTxt: '',     imgUrl: '' },
+        ]
+      },
+      {
+        tabId: 'sports', tabName: '스포츠',
+        products: [
+          { prdId: 's01', prdName: '러닝 조거',      price: '69,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 's02', prdName: '요가 레깅스',    price: '79,000원',  badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 's03', prdName: '웨이트 벨트',    price: '49,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 's04', prdName: '사이클 저지',    price: '89,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 's05', prdName: '수영복 Pro',     price: '99,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 's06', prdName: '스키 장갑',      price: '69,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 's07', prdName: '등산 스틱',      price: '55,000원',  badgeTxt: 'SALE', imgUrl: '' },
+        ]
+      },
+      {
+        tabId: 'beauty', tabName: '뷰티',
+        products: [
+          { prdId: 'bt01', prdName: '수분 세럼',     price: '59,000원',  badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 'bt02', prdName: '매트 립스틱',   price: '39,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'bt03', prdName: '클렌징 폼',     price: '29,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'bt04', prdName: '젤 네일킷',     price: '49,000원',  badgeTxt: 'SALE', imgUrl: '' },
+        ]
+      },
+      {
+        tabId: 'home', tabName: '홈리빙',
+        products: [
+          { prdId: 'h01', prdName: '아로마 캔들',    price: '35,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'h02', prdName: '쿠션 커버',      price: '25,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'h03', prdName: '미니 화분',      price: '19,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'h04', prdName: '머그컵 세트',    price: '45,000원',  badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 'h05', prdName: '배스 솔트',      price: '29,000원',  badgeTxt: 'SALE', imgUrl: '' },
+          { prdId: 'h06', prdName: '탁상 거울',      price: '55,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'h07', prdName: '디퓨저 세트',    price: '65,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'h08', prdName: '패브릭 바스켓',  price: '32,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+        ]
+      },
+      {
+        tabId: 'digital', tabName: '디지털',
+        products: [
+          { prdId: 'd01', prdName: '노캔 이어폰',    price: '199,000원', badgeTxt: 'BEST', imgUrl: '' },
+          { prdId: 'd02', prdName: '무선 키보드',    price: '129,000원', badgeTxt: '',     imgUrl: '' },
+          { prdId: 'd03', prdName: '에르고 마우스',  price: '89,000원',  badgeTxt: 'NEW',  imgUrl: '' },
+          { prdId: 'd04', prdName: '폰 케이스',      price: '29,000원',  badgeTxt: '',     imgUrl: '' },
+          { prdId: 'd05', prdName: '스마트 조명',    price: '79,000원',  badgeTxt: 'SALE', imgUrl: '' },
+          { prdId: 'd06', prdName: '무선 충전기',    price: '49,000원',  badgeTxt: '',     imgUrl: '' },
+        ]
+      },
+    ];
+
+    // 이미지 없을 때 탭별 fallback 이모지
+    const TAB_EMOJI = {
+      shoes: '👟', bag: '👜', clothes: '👗', acc: '⌚',
+      sports: '🏃', beauty: '🧴', home: '🕯️', digital: '🎧',
+    };
+
+    // ============================================================
+    // 설정
+    // ============================================================
+    const COLS     = 3;
+    const ROWS     = 2;
+    const PER_PAGE = COLS * ROWS; // 6
+
+    // ============================================================
+    // Swiper 인스턴스 저장
+    // ============================================================
+    const prodSwiperInst = {};
+
+    // ============================================================
+    // HTML 생성 헬퍼
+    // ============================================================
+    function createTabButtons() {
+      const wrapper = document.querySelector('#tabSwiper .swiper-wrapper');
+      wrapper.innerHTML = TAB_DATA.map((tab, i) => `
+        <div class="swiper-slide">
+          <button class="tab-btn ${i === 0 ? 'is-active' : ''}"
+                  data-tab-id="${tab.tabId}" type="button">
+            ${tab.tabName}
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function createProductPanels() {
+      const section = document.getElementById('productSection');
+      section.innerHTML = TAB_DATA.map((tab, i) => `
+        <div class="product-panel ${i === 0 ? 'is-active' : ''}" data-panel-id="${tab.tabId}">
+          <div class="prod-swiper-block">
+            <button class="prod-arrow prod-arrow-prev" id="prodPrev_${tab.tabId}">&#8249;</button>
+            <div class="prod-swiper-wrap">
+              <div class="swiper prod-swiper" id="prodSwiper_${tab.tabId}" style="height:${ROWS === 2 ? '380px' : '200px'};">
+                <div class="swiper-wrapper">
+                  ${tab.products.map(prd => `
+                    <div class="swiper-slide">
+                      <div class="prod-card" data-prd-id="${prd.prdId}">
+                        <div class="prod-thumb">
+                          ${prd.imgUrl
+                            ? `<img src="${prd.imgUrl}" alt="${prd.prdName}" loading="lazy">`
+                            : (TAB_EMOJI[tab.tabId] || '🛍️')
+                          }
+                        </div>
+                        <div class="prod-info">
+                          ${prd.badgeTxt ? `<p class="prod-badge">${prd.badgeTxt}</p>` : ''}
+                          <p class="prod-name">${prd.prdName}</p>
+                          <p class="prod-price">${prd.price}</p>
+                        </div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+            <button class="prod-arrow prod-arrow-next" id="prodNext_${tab.tabId}">&#8250;</button>
+          </div>
+          <div class="prod-pagination" id="prodPagination_${tab.tabId}"></div>
+        </div>
+      `).join('');
+    }
+
+    // ============================================================
+    // Swiper 초기화
+    // ============================================================
+    function initProdSwiper(tabId) {
+      if (prodSwiperInst[tabId]) return; // 중복 방지
+
+      prodSwiperInst[tabId] = new Swiper(`#prodSwiper_${tabId}`, {
+        slidesPerView  : COLS,
+        slidesPerGroup : COLS,
+        spaceBetween   : 16,
+        grid: {
+          rows : ROWS,
+          fill : 'row',
+        },
+        navigation: {
+          prevEl : `#prodPrev_${tabId}`,
+          nextEl : `#prodNext_${tabId}`,
+        },
+        pagination: {
+          el        : `#prodPagination_${tabId}`,
+          clickable : true,
+        },
+      });
+    }
+
+    // ============================================================
+    // 탭 전환
+    // ============================================================
+    function activateTab(tabId) {
+      // 탭 버튼 active 클래스
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.tabId === tabId);
+      });
+
+      // 상품 패널 전환
+      document.querySelectorAll('.product-panel').forEach(panel => {
+        panel.classList.toggle('is-active', panel.dataset.panelId === tabId);
+      });
+
+      // ✅ 클릭한 탭의 인덱스를 찾아 중앙으로 이동
+      const idx = TAB_DATA.findIndex(t => t.tabId === tabId);
+      if (idx !== -1) {
+        tabSwiper.slideTo(idx);  // centeredSlides: true 이므로 자동으로 중앙 정렬
+      }
+
+      // 상품 Swiper 최초 초기화
+      if (!prodSwiperInst[tabId]) {
+        initProdSwiper(tabId);
+      }
+    }
+
+    // ============================================================
+    // 이벤트
+    // ============================================================
+    function bindEvents() {
+      // 탭 클릭
+      document.querySelector('#tabSwiper .swiper-wrapper')
+        .addEventListener('click', e => {
+          const btn = e.target.closest('.tab-btn');
+          if (btn) activateTab(btn.dataset.tabId);
+        });
+
+      // 상품 카드 클릭
+      document.getElementById('productSection')
+        .addEventListener('click', e => {
+          const card = e.target.closest('.prod-card');
+          if (!card) return;
+          console.log('상품 클릭:', card.dataset.prdId);
+          // location.href = `/product/detail?prdId=${card.dataset.prdId}`;
+        });
+    }
+
+    // ============================================================
+    // 실행
+    // ============================================================
+    createTabButtons();
+    createProductPanels();
+
+    // 탭 Swiper
+    const tabSwiper = new Swiper('#tabSwiper', {
+      slidesPerView  : 'auto',
+      spaceBetween   : 8,
+      grabCursor     : true,
+      centeredSlides : true,       // 활성 슬라이드를 중앙 기준으로 배치
+      centeredSlidesBounds: true,  // 양 끝 탭은 끝까지만 이동 (중앙 고집 안 함)
+      freeMode       : {
+        enabled      : true,
+        momentum     : true,
+      },
+      mousewheel     : {
+        forceToAxis  : true,
+      },
+      navigation: {
+        prevEl : '#tabPrev',
+        nextEl : '#tabNext',
+      },
+    });
+
+    bindEvents();
+    activateTab(TAB_DATA[0].tabId); // 첫 번째 탭 초기화
+  </script>
+
+</body>
+</html>
