@@ -1,0 +1,55 @@
+/* 출석체크 캘린더 */
+.atd { max-width: 480px; margin: 0 auto; padding: 20px; border-radius: 16px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.06); font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color: #222; box-sizing: border-box; }
+.atd *, .atd *::before, .atd *::after { box-sizing: border-box; }
+.atd ul { list-style: none; margin: 0; padding: 0; }
+.atd.is-loading { opacity: .6; pointer-events: none; }
+
+/* 헤더 */
+.atd-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.atd-title { margin: 0; font-size: 18px; font-weight: 700; }
+.atd-stats { display: flex; gap: 12px; }
+.atd-stats li { text-align: center; font-size: 12px; color: #888; }
+.atd-stats strong { display: block; margin-top: 2px; font-size: 16px; color: #ff5a36; }
+
+/* 혜택 */
+.atd-rewards { margin-bottom: 16px; padding: 14px; border-radius: 12px; background: #fff6f3; }
+.atd-progress { height: 8px; border-radius: 4px; background: #ffe0d6; overflow: hidden; margin-bottom: 12px; }
+.atd-progress span { display: block; height: 100%; background: #ff5a36; transition: width .3s; }
+.atd-reward-list { display: grid; gap: 8px; }
+.atd-reward { display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px; background: #fff; font-size: 13px; }
+.atd-reward-days { font-style: normal; font-weight: 700; color: #ff5a36; }
+.atd-reward-type { padding: 2px 6px; border-radius: 4px; background: #f2f2f2; font-size: 11px; color: #666; }
+.atd-reward-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.atd-reward-state { font-size: 12px; color: #999; }
+.atd-reward.is-done { background: #ff5a36; color: #fff; }
+.atd-reward.is-done .atd-reward-days,
+.atd-reward.is-done .atd-reward-state { color: #fff; }
+.atd-reward.is-done .atd-reward-type { background: rgba(255,255,255,.25); color: #fff; }
+
+/* 달력 */
+.atd-week, .atd-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.atd-week { margin-bottom: 6px; }
+.atd-weekday { text-align: center; font-size: 12px; color: #888; }
+.atd-weekday.is-sun { color: #e5484d; }
+.atd-weekday.is-sat { color: #3e63dd; }
+
+.atd-day { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1 / 1; min-height: 44px; padding: 0; border: 1px solid transparent; border-radius: 10px; background: #f7f7f7; font: inherit; color: #333; cursor: default; }
+.atd-day.is-empty { background: none; }
+.atd-day.is-sun .atd-num { color: #e5484d; }
+.atd-day.is-sat .atd-num { color: #3e63dd; }
+.atd-num { font-size: 14px; font-weight: 600; }
+.atd-label { margin-top: 2px; font-size: 10px; font-weight: 600; }
+
+/* 상태 */
+.atd-day.is-future,
+.atd-day.is-before { background: #fafafa; opacity: .4; }
+.atd-day.is-missed { background: #f2f2f2; }
+.atd-day.is-missed .atd-num { color: #bbb; }
+.atd-day.is-available { border-color: #ff5a36; background: #fff; cursor: pointer; }
+.atd-day.is-available:hover { background: #fff1ec; }
+.atd-day.is-available .atd-label { color: #ff5a36; }
+.atd-day.is-attended { background: #ff5a36; }
+.atd-day.is-attended .atd-num,
+.atd-day.is-attended .atd-label { color: #fff !important; }
+.atd-day.is-today { box-shadow: 0 0 0 2px #222 inset; }
+.atd-day:focus-visible { outline: 2px solid #222; outline-offset: 2px; }

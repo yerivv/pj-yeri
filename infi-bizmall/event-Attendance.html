@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+	<title>비즈몰 입니다</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="requiresActiveX=true">
+	<meta http-equiv="Imagetoolbar" content="no">
+	<meta name="keywords" content="비즈몰, 쇼핑몰, B2B, 골프용품">
+	<meta name="description" content="비즈몰 방문을 환영합니다.">
+	<meta name="classification" content="비즈몰, 쇼핑몰, 골프용품, 골프존">
+
+  <link rel="SHORTCUT ICON" href="https://bizmall.golfzon.com/data/data/base/favicon.ico?40470eba29c44e7abfb4a829e95457b4">
+  <link rel="stylesheet" type="text/css" href="https://bizmall.golfzon.com/css/common.css?a582977a560d4995ab72836a6dd5fbd0">
+	<link rel="stylesheet" type="text/css" href="https://bizmall.golfzon.com/css/goods.css?eedbe9a664c84142b74efed33feb5f52">
+	<!-- solution default //-->
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/common.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/embed.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/misc.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/cookie.js"></script>
+		
+	<!-- jquery //-->
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.browser.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.adjustImage.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.laybox.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.rollover.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/ui.js?6a0816a66bfe461d9522966af155f2c5"></script>
+
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.slidex.js"></script>
+</head>
+
+<body oncontextmenu="return false">
+
+<div id="wrap"><!-- wrap -->
+
+  <!-- container -->
+	<div id="container_wide" style="margin-right:auto;margin-left:auto;">
+		<!-- contents -->
+		<div id="contents">
+      <div class="navigation">
+        <ul>
+          <li class="home"><a href="https://bizmall.golfzon.com/main/index.do">HOME</a></li>
+          <li><strong>이벤트/기획전</strong></li>
+        </ul>
+      </div>
+
+      <div class="page_event">
+        <div class="event_title">
+          <h2>11월 카드사 즉시 할인혜택 안내</h2>
+          <p class="date">2026-10-30~2026-11-30</p>
+        </div>
+        
+        <div class="" style="height:200px;background-color:bisque;margin-top:20px;">상단 에디터</div>
+        
+        <!-- 출석체크 영역 -->
+        <link rel="stylesheet" type="text/css" href="css/attendance.css">
+        <div id="attendanceCalendar" style="padding:40px 0 60px;"></div>
+
+        <script src="jscript/attendance.js"></script>
+        <script>
+          // 데모: checkUrl을 비워두면 서버 없이 화면에서만 동작합니다.
+          AttendanceCalendar.init({
+            el: '#attendanceCalendar',
+            month: '2026-11',
+            startDate: '2026-11-03',
+            today: '2026-11-10',
+            attendedDates: ['2026-11-03', '2026-11-04', '2026-11-05', '2026-11-07', '2026-11-08', '2026-11-09'],
+            rewards: [
+              { id: 1, days: 5, items: [
+                { type: 'POINT', name: '500 포인트' }
+              ]},
+              { id: 2, days: 10, items: [
+                { type: 'COUPON', name: '무료배송 쿠폰' }
+              ]},
+              { id: 3, days: 20, items: [
+                { type: 'POINT',  name: '3,000 포인트' },
+                { type: 'COUPON', name: '10% 할인 쿠폰' }
+              ]}
+            ],
+            receivedRewardIds: [],
+            onlyToday: false,
+            checkUrl: ''
+          });
+        </script>
+        <!-- // 출석체크 영역 -->
+        
+        <div class="" style="height:200px;background-color:bisque;">하단 에디터</div>
+
+        <div class="event_list_view">
+          <a href="./event_main.do?state=">목록보기</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+</body>
+</html>

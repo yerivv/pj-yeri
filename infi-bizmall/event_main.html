@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+	<title>비즈몰 입니다</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="requiresActiveX=true">
+	<meta http-equiv="Imagetoolbar" content="no">
+	<meta name="keywords" content="비즈몰, 쇼핑몰, B2B, 골프용품">
+	<meta name="description" content="비즈몰 방문을 환영합니다.">
+	<meta name="classification" content="비즈몰, 쇼핑몰, 골프용품, 골프존">
+
+  <link rel="SHORTCUT ICON" href="https://bizmall.golfzon.com/data/data/base/favicon.ico?40470eba29c44e7abfb4a829e95457b4">
+  <link rel="stylesheet" type="text/css" href="https://bizmall.golfzon.com/css/common.css?a582977a560d4995ab72836a6dd5fbd0">
+	<link rel="stylesheet" type="text/css" href="https://bizmall.golfzon.com/css/goods.css?eedbe9a664c84142b74efed33feb5f52">
+	<!-- solution default //-->
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/common.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/embed.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/misc.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/cookie.js"></script>
+		
+	<!-- jquery //-->
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.browser.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.adjustImage.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.laybox.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.rollover.js"></script>
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/ui.js?6a0816a66bfe461d9522966af155f2c5"></script>
+
+	<script type="text/javascript" src="https://bizmall.golfzon.com/jscript/jquery/jquery.slidex.js"></script>
+</head>
+
+<body oncontextmenu="return false">
+
+<div id="wrap"><!-- wrap -->
+	<!-- header -->
+	<div id="topper"></div>
+	<!-- //topper -->
+  <!-- container -->
+	<div id="container_wide" style="margin-right:auto;margin-left:auto;">
+		<!-- contents -->
+		<div id="contents">
+      <div class="navigation">
+        <ul>
+          <li class="home"><a href="https://bizmall.golfzon.com/main/index.do">HOME</a></li>
+          <li><strong>이벤트/기획전</strong></li>
+        </ul>
+      </div>
+<script type="text/javascript">
+//<![CDATA[
+$(function() {
+	$('.event_tab li').on('click',function(){
+		$('.event_tab li').removeClass('on');
+		$(this).addClass('on');
+		return false;
+	});	
+});
+
+function goEventList(n){
+	document.location.href="./event_main.do?state="+n;
+}
+
+function viewEventDetail(idx,msg,etype){
+	
+	var surl = "event.do";
+	if(etype == 'SURVEY') surl = "survey.do";
+	
+	(idx<=0) ? alert(msg+"된 이벤트 입니다.") : document.location.href=surl+"?idx="+idx+"&param="; 
+}
+//]]>
+</script>
+			<div class="page_event_main">
+				<h2 class="title_middle">이벤트/기획전 <span class="copy">비즈몰에서 준비한 다양한 이벤트와 기획전 모음</span></h2>
+				
+				<div class="event_tab">
+					<ul>
+						<li class="on"><a href="javascript:;" onclick="goEventList('')">전체 이벤트</a></li>
+						<li><a href="javascript:;" onclick="goEventList('ing')">진행중인 이벤트</a></li>
+						<li><a href="javascript:;" onclick="goEventList('end')">종료된 이벤트</a></li>
+					</ul>
+				</div>
+				
+				<div class="event_list">
+					<ul>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5206,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20261030102957.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5206,'진행','EVENT')">
+										<span class="title">11월 간편결제 등록하고 카드할인..</span>
+										<span class="date">2026-10-30~2026-11-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5205,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20261030102113.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5205,'진행','EVENT')">
+										<span class="title">11월 카드사 즉시 할인혜택 안내</span>
+										<span class="date">2026-10-30~2026-11-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5204,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20261030101936.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5204,'진행','EVENT')">
+										<span class="title">11월 10만원 이상 구매하고 현대..</span>
+										<span class="date">2026-10-30~2026-11-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5203,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20261030101824.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5203,'진행','EVENT')">
+										<span class="title">11월 10만원 이상 구매하고 하나..</span>
+										<span class="date">2026-10-30~2026-11-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5202,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20261030091030.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5202,'진행','EVENT')">
+										<span class="title">☃️미리준비하는 로고상품 윈터..</span>
+										<span class="date">2026-10-30~2026-12-09</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5121,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260914110733.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5121,'진행','EVENT')">
+										<span class="title">모션플레이트 타석매트 현장교체..</span>
+										<span class="date">2026-09-14~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5066,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260731160324.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5066,'진행','EVENT')">
+										<span class="title">투비전NX플러스 출시! 신제품 전..</span>
+										<span class="date">2026-07-31~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(4826,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260210175241.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(4826,'진행','EVENT')">
+										<span class="title">2026 스크린 구매왕 챌린지</span>
+										<span class="date">2026-02-10~2027-01-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(4824,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260209144603.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(4824,'진행','EVENT')">
+										<span class="title">■ 놀라운 경영주 혜택, 저렴하게..</span>
+										<span class="date">2026-02-05~2030-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(4630,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20250918153946.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(4630,'진행','EVENT')">
+										<span class="title"> #내돈내산 구매후기 증명 상품 ..</span>
+										<span class="date">2025-09-18~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(4603,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20250828155414.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(4603,'진행','EVENT')">
+										<span class="title">GSTAR 로고볼 출시 기념 이벤트!</span>
+										<span class="date">2025-08-28~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(4560,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20250829114741.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(4560,'진행','EVENT')">
+										<span class="title">푸드119 닭발 맛집 입점 기념 할..</span>
+										<span class="date">2025-07-28~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(4008,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20250217114929.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(4008,'진행','EVENT')">
+										<span class="title">슈퍼바이저(SV) 전용 EPSON 프로..</span>
+										<span class="date">2026-02-23~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(3978,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20240624145347.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(3978,'진행','EVENT')">
+										<span class="title">비즈몰 로고상품 모음전!</span>
+										<span class="date">2024-06-24~2029-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(3423,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20230524180434.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(3423,'진행','EVENT')">
+										<span class="title">매장운영에 필요한 필수 운영비품..</span>
+										<span class="date">2023-05-24~2030-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(3408,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20230517135015.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(3408,'진행','EVENT')">
+										<span class="title">부가수익 식품관 #소수남</span>
+										<span class="date">2023-05-17~2036-10-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(3353,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20230412091338.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(3353,'진행','EVENT')">
+										<span class="title">부가수익 고민 해결! 부가수익 상..</span>
+										<span class="date">2023-04-14~2029-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5214,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20261105094909.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5214,'진행','EVENT')">
+										<span class="title">🪑고급 골프타석의자 디자인까..</span>
+										<span class="date">2026-11-05~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5180,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20261014143326.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5180,'진행','EVENT')">
+										<span class="title">🍙냉동김밥 11종 특별할인 간편..</span>
+										<span class="date">2026-10-14~2026-11-20</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260930170235.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">10월 10만원 이상 구매하고 신한..</span>
+										<span class="date">2026-09-30~2026-10-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260930170148.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">10월 10만원 이상 구매하고 국민..</span>
+										<span class="date">2026-09-30~2026-10-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260930170029.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">10월 카드사 즉시 할인혜택 안내</span>
+										<span class="date">2026-09-30~2026-10-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260930165753.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">10월 간편결제 등록하고 카드할인..</span>
+										<span class="date">2026-09-30~2026-10-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260917161201.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">⛳가을맞이 로고상품 특별 할인전..</span>
+										<span class="date">2026-09-18~2026-10-27</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260907093454.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">🌕9월 비즈몰 한가위 맞이 특가..</span>
+										<span class="date">2026-09-01~2026-09-29</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260902154206.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">⛳🏌️매장필수품 깨진볼 수거..</span>
+										<span class="date">2026-09-02~2026-10-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260901085646.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">9월 간편결제 등록하고 카드할인..</span>
+										<span class="date">2026-09-01~2026-09-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260901085520.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">9월 10만원 이상 구매하고 하나카..</span>
+										<span class="date">2026-09-01~2026-09-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260901085436.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">9월 10만원 이상 구매하고 농협카..</span>
+										<span class="date">2026-09-01~2026-09-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260901085325.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">9월 카드사 즉시 할인혜택 안내</span>
+										<span class="date">2026-09-01~2026-09-30</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260803175125.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">❤️참 맑은 음료 할인전</span>
+										<span class="date">2026-08-03~2026-10-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260803165701.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">🎉🎉무더위 극복! COOL한 할..</span>
+										<span class="date">2026-08-03~2026-09-15</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260731163344.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">8월 카드사 즉시 할인혜택 안내</span>
+										<span class="date">2026-07-31~2026-08-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260731161109.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">8월 간편결제 등록하고 카드할인..</span>
+										<span class="date">2026-07-31~2026-08-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260731160922.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">8월 10만원 이상 구매하고 현대카..</span>
+										<span class="date">2026-07-31~2026-08-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260731160805.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">8월 10만원 이상 구매하고 롯데카..</span>
+										<span class="date">2026-07-31~2026-08-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260723113625.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">EPSON 레이저 프로젝터 역대급 할..</span>
+										<span class="date">2026-07-23~2026-08-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260723083946.jpg">
+										<span class="event_end">종료된 이벤트 입니다.</span>
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(0,'종료','EVENT')">
+										<span class="title">EPSON 프로젝터 체험 이벤트</span>
+										<span class="date">2026-07-23~2026-08-17</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5040,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260820171421.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5040,'진행','EVENT')">
+										<span class="title">Play New S 골프공 품절 대란 상..</span>
+										<span class="date">2026-07-10~2026-12-31</span>
+									</a>
+								</div>
+							</li>
+						<li>
+								<div class="img_box">
+									<a href="javascript:;" onclick="viewEventDetail(5032,'진행','EVENT')">
+										<img src="https://bizmall.golfzon.com/data/data/base/event/20260703104419.jpg">
+										</a>
+								</div>
+								<div class="text_box">
+									<a href="javascript:;" onclick="viewEventDetail(5032,'진행','EVENT')">
+										<span class="title">최고의 가성비 2피스 클로버볼</span>
+										<span class="date">2026-07-03~2027-12-31</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+						</div>
+			</div>
+    </div>
+		<!-- //contents -->
+	</div>
+	<!-- //container -->
+
+	<!-- footer -->
+	<div id="footer"></div>
+	<!-- //footer -->
+</div><!-- //wrap -->
+
+
+
+</body>
+</html>
